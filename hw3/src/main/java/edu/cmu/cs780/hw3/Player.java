@@ -10,4 +10,8 @@ public interface Player {
      * column number to add checker to the board.
      */
     int selectColumn();
+    /**
+     * A method that returns the player ID.
+     */
+    int getPlayerId();
 }
