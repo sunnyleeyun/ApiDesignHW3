@@ -27,12 +27,16 @@ public class Board {
      */
     private static final int[][] DIRECTIONS = new int[][] { { 1, 0 }, { 0, 1 }, { 1, -1 }, { 1, 1 } };
     /**
-     * 2D Square array variable indicating the board of the game.
+     * 2D array variable indicating the board of the game.
      */
     private int[][] gameBoard;
-
+    /**
+     * Number of checkers placed on the board.
+     */
     private int checkersCount;
-
+    /**
+     * Array of players playing the game.
+     */
     private Player[] players;
 
     /**
@@ -49,12 +53,22 @@ public class Board {
         this.players[1] = new HumanPlayer(2);
     }
 
+    /**
+     * Another constructor of the Board class.
+     * 
+     * @param newBoard      The 2D array of the board
+     * @param checkersCount The number of the checker on the board
+     * @param players       The array of Players
+     */
     public Board(int[][] newBoard, int checkersCount, Player[] players) {
         this.gameBoard = newBoard;
         this.checkersCount = checkersCount;
         this.players = players;
     }
 
+    /**
+     * Return string of pretty printed board.
+     */
     public String prettyPrintBoard() {
         String res = "";
         for (int i = 0; i < ROW_SIZE; ++i) {
@@ -81,22 +95,25 @@ public class Board {
         }
     }
 
-    private void outputColumnFull() {
-        System.out.print("This column is full!");
-    }
-
-    private void outputGameIsOver() {
-        System.out.print("Game is over. Please start another game.");
-    }
-
+    /**
+     * Return true if current row is not full, else false.
+     * 
+     * @param col The column number of the new checker
+     */
     private boolean canPlaceChecker(int col) {
         return this.gameBoard[0][col] == 0;
     }
 
+    /**
+     * Return Player object based on checkerCount.
+     */
     private Player getCurrentPlayer() {
         return players[checkersCount % 2];
     }
 
+    /**
+     * Return true if board is full, else false.
+     */
     private boolean gameIsOver() {
         return checkersCount == ROW_SIZE * COL_SIZE;
     }
@@ -178,5 +195,19 @@ public class Board {
             }
         }
         return false;
+    }
+
+    /**
+     * System print column full.
+     */
+    private void outputColumnFull() {
+        System.out.print("This column is full!");
+    }
+
+    /**
+     * System print game over.
+     */
+    private void outputGameIsOver() {
+        System.out.print("Game is over. Please start another game.");
     }
 }
