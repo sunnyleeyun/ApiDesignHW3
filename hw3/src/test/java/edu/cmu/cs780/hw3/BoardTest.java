@@ -9,6 +9,7 @@ import java.io.PrintStream;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class BoardTest {
@@ -28,45 +29,45 @@ public class BoardTest {
         System.setOut(standardOut);
     }
 
-    @Test
-    public void testEmptyPrettyPrintBoard() {
-        // given
-        // when
-        Board board = new Board();
+    // @Test
+    // public void testEmptyPrettyPrintBoard() {
+    // // given
+    // // when
+    // Board board = new Board();
 
-        // then
-        String expected = "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n";
-        assertEquals(expected, board.prettyPrint());
-    }
+    // // then
+    // String expected = "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n";
+    // assertEquals(expected, board.prettyPrint());
+    // }
 
-    @Test
-    public void testPlayFirstMove() {
-        // given
-        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-        int checkersCount = 0;
-        Player[] players = { new HumanPlayer(1), new HumanPlayer(2) };
-        Board board = new Board(newBoard, checkersCount, players);
+    // @Test
+    // public void testPlayFirstMove() {
+    // // given
+    // int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
+    // int checkersCount = 0;
+    // Player[] players = { new HumanPlayer(1), new HumanPlayer(2) };
+    // Board board = new Board(newBoard, checkersCount, players);
 
-        // when
-        String data = "1";
-        InputStream in = new ByteArrayInputStream(data.getBytes());
-        System.setIn(in);
-        board.play(players[0]);
+    // // when
+    // String data = "1";
+    // InputStream in = new ByteArrayInputStream(data.getBytes());
+    // System.setIn(in);
+    // board.play(players[0]);
 
-        // then
-        String expected = "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "1000000\n";
-        assertEquals(expected, board.prettyPrint());
-    }
+    // // then
+    // String expected = "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n" +
+    // "0000000\n" +
+    // "1000000\n";
+    // assertEquals(expected, board.prettyPrint());
+    // }
 
     // @Test
     // public void testPlaySecondMove() {

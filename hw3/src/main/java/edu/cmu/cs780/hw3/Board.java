@@ -54,7 +54,7 @@ public class Board {
     public Board(int[][] newBoard, int checkersCount, Player[] players) {
         this.gameBoard = newBoard;
         this.checkersCount = checkersCount;
-        this.players = players;
+        // this.players = players;
     }
 
     /**
@@ -82,10 +82,11 @@ public class Board {
      * already full, an appropriate message is displayed.
      */
     public void play(Player currentPlayer) {
-        if (hasNoEmptySpace()) {
+        if (isFull()) {
             outputGameIsOver();
             return;
         }
+        // Player currentPlayer = getCurrentPlayer();
         int column = currentPlayer.selectColumn();
         if (canPlaceChecker(column)) {
             addToBoard(column, currentPlayer.getPlayerId());
@@ -113,7 +114,7 @@ public class Board {
     /**
      * Return true if board is full, else false.
      */
-    public boolean hasNoEmptySpace() {
+    public boolean isFull() {
         return checkersCount == ROW_SIZE * COL_SIZE;
     }
 

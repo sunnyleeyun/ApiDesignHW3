@@ -32,31 +32,173 @@ public class GameTest {
         System.setOut(standardOut);
     }
 
-    // @Test
-    // public void testPlayFirstMoveSeed4() {
-    // // given
-    // int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-    // int checkersCount = 0;
-    // Player[] players = { new HumanPlayer(1), new HumanPlayer(2) };
-    // Player p1 = new HumanPlayer(1);
-    // Player p2 = new HumanPlayer(2);
-    // Game game = new Game(p1, p2, newBoard, checkersCount, players);
+    @Test
+    public void testHasWinner1() {
+        // given
+        // when
+        Game game = new Game();
+        int gameboard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 2, 2, 2, 0, 0, 0, 0 },
+                { 1, 1, 1, 1, 0, 0, 0 }
+        };
 
-    // // when
-    // String colNum = "1";
-    // String data = colNum;
-    // InputStream in = new ByteArrayInputStream(data.getBytes());
-    // System.setIn(in);
-    // game.play();
+        // then
+        assertTrue(game.hasWinner(gameboard));
+    }
 
-    // // then
-    // String expected = "0000000\n" +
-    // "0000000\n" +
-    // "0000000\n" +
-    // "0000000\n" +
-    // "0000000\n" +
-    // "2000000\n";
-    // assertEquals(expected, game.prettyPrintBoard());
-    // }
+    @Test
+    public void testHasWinner2() {
+        // given
+        // when
+        Game game = new Game();
+        int gameboard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 1, 0, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 }
+        };
+
+        // then
+        assertTrue(game.hasWinner(gameboard));
+    }
+
+    @Test
+    public void testHasWinner3() {
+        // given
+        // when
+        Game game = new Game();
+        int gameboard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 2, 2, 2, 0, 0, 0, 0 },
+                { 0, 0, 0, 1, 1, 1, 1 }
+        };
+
+        // then
+        assertTrue(game.hasWinner(gameboard));
+    }
+
+    @Test
+    public void testHasWinner4() {
+        // given
+        // when
+        Game game = new Game();
+        int gameboard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 1 },
+                { 0, 2, 0, 0, 0, 0, 1 },
+                { 0, 2, 0, 0, 0, 0, 1 },
+                { 0, 2, 0, 0, 0, 0, 1 }
+        };
+
+        // then
+        assertTrue(game.hasWinner(gameboard));
+    }
+
+    @Test
+    public void testHasWinner5() {
+        // given
+        // when
+        Game game = new Game();
+        int gameboard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 1, 0, 0, 0 },
+                { 0, 0, 1, 1, 0, 0, 0 },
+                { 2, 1, 1, 2, 0, 0, 0 },
+                { 1, 2, 2, 2, 0, 0, 0 }
+        };
+
+        // then
+        assertTrue(game.hasWinner(gameboard));
+    }
+
+    @Test
+    public void testHasWinner6() {
+        // given
+        // when
+        Game game = new Game();
+        int gameboard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 1, 0, 0, 0, 0, 0, 0 },
+                { 2, 1, 0, 0, 0, 0, 0 },
+                { 2, 1, 1, 2, 0, 0, 0 },
+                { 1, 2, 2, 1, 0, 0, 0 }
+        };
+
+        // then
+        assertTrue(game.hasWinner(gameboard));
+    }
+
+    @Test
+    public void testEmptyPrettyPrintBoard() {
+        // given
+        // when
+        Game game = new Game();
+
+        // then
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n";
+        assertEquals(expected, game.prettyPrintBoard());
+    }
+
+    @Test
+    public void testPlaceCheckerFirstMove() {
+        // given
+        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
+        int checkersCount = 0;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 0;
+        game.placeChecker(col);
+
+        // then
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "1000000\n";
+        assertEquals(expected, game.prettyPrintBoard());
+    }
+
+    @Test
+    public void testPlaceCheckerSecondMove() {
+        // given
+        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
+        int checkersCount = 0;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 0;
+        game.placeChecker(col);
+        game.placeChecker(col);
+
+        // then
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "2000000\n" +
+                "1000000\n";
+        assertEquals(expected, game.prettyPrintBoard());
+    }
 
 }
