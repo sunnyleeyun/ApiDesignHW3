@@ -80,6 +80,16 @@ public class Board {
         return res;
     }
 
+    /**
+     * Plays the current turn in the game.
+     *
+     * This method checks if the game is over, and if so, it outputs a message
+     * indicating that the game has ended. If the game is still ongoing, it proceeds
+     * with the current player's turn. The player is prompted to select a column for
+     * their checker placement, and if the selected column is valid (not full), the
+     * player's checker is added to the game board. If the selected column is
+     * already full, an appropriate message is displayed.
+     */
     public void play() {
         if (gameIsOver()) {
             outputGameIsOver();
