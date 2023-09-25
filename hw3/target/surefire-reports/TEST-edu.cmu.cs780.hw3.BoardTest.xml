@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.cmu.cs780.hw3.BoardTest" time="0.052" tests="5" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.cmu.cs780.hw3.BoardTest" time="0.054" tests="5" errors="4" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="19"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="TW"/>
     <property name="sun.boot.library.path" value="/Users/yun/Library/Java/JavaVirtualMachines/openjdk-19.0.2/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/yun/Desktop/ApiDesignHW3/hw3/target/surefire/surefirebooter15201333428526601079.jar /Users/yun/Desktop/ApiDesignHW3/hw3/target/surefire 2023-09-25T15-08-15_752-jvmRun1 surefire1572610645343078151tmp surefire_011763680305538164369tmp"/>
+    <property name="sun.java.command" value="/Users/yun/Desktop/ApiDesignHW3/hw3/target/surefire/surefirebooter7009253710588913993.jar /Users/yun/Desktop/ApiDesignHW3/hw3/target/surefire 2023-09-25T16-16-42_988-jvmRun1 surefire3352185896457123000tmp surefire_011855302348851567109tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/yun/Desktop/ApiDesignHW3/hw3/target/test-classes:/Users/yun/Desktop/ApiDesignHW3/hw3/target/classes:/Users/yun/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/yun/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/yun/Desktop/ApiDesignHW3/hw3/target/surefire/surefirebooter15201333428526601079.jar"/>
+    <property name="surefire.real.class.path" value="/Users/yun/Desktop/ApiDesignHW3/hw3/target/surefire/surefirebooter7009253710588913993.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="19.0.2+7-44"/>
@@ -57,9 +57,37 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="63.0"/>
   </properties>
-  <testcase name="testPlayGameIsOver" classname="edu.cmu.cs780.hw3.BoardTest" time="0.006"/>
-  <testcase name="testPlaySecondMove" classname="edu.cmu.cs780.hw3.BoardTest" time="0.001"/>
-  <testcase name="testEmptyrettyPrintBoard" classname="edu.cmu.cs780.hw3.BoardTest" time="0.001"/>
-  <testcase name="testPlayCannotPlaceChestAtColumn" classname="edu.cmu.cs780.hw3.BoardTest" time="0.001"/>
-  <testcase name="testPlayFirstMove" classname="edu.cmu.cs780.hw3.BoardTest" time="0.001"/>
+  <testcase name="testEmptyPrettyPrintBoard" classname="edu.cmu.cs780.hw3.BoardTest" time="0.008"/>
+  <testcase name="testPlayGameIsOver" classname="edu.cmu.cs780.hw3.BoardTest" time="0.003">
+    <error message="Unresolved compilation problem: &#10;	players cannot be resolved or is not a field&#10;" type="java.lang.Error">java.lang.Error: 
+Unresolved compilation problem: 
+	players cannot be resolved or is not a field
+
+	at edu.cmu.cs780.hw3.BoardTest.testPlayGameIsOver(BoardTest.java:130)
+</error>
+  </testcase>
+  <testcase name="testPlaySecondMove" classname="edu.cmu.cs780.hw3.BoardTest" time="0.003">
+    <error message="Unresolved compilation problem: &#10;	players cannot be resolved or is not a field&#10;" type="java.lang.Error">java.lang.Error: 
+Unresolved compilation problem: 
+	players cannot be resolved or is not a field
+
+	at edu.cmu.cs780.hw3.BoardTest.testPlaySecondMove(BoardTest.java:79)
+</error>
+  </testcase>
+  <testcase name="testPlayCannotPlaceChestAtColumn" classname="edu.cmu.cs780.hw3.BoardTest" time="0">
+    <error message="Unresolved compilation problem: &#10;	players cannot be resolved or is not a field&#10;" type="java.lang.Error">java.lang.Error: 
+Unresolved compilation problem: 
+	players cannot be resolved or is not a field
+
+	at edu.cmu.cs780.hw3.BoardTest.testPlayCannotPlaceChestAtColumn(BoardTest.java:106)
+</error>
+  </testcase>
+  <testcase name="testPlayFirstMove" classname="edu.cmu.cs780.hw3.BoardTest" time="0.002">
+    <error message="Unresolved compilation problem: &#10;	players cannot be resolved or is not a field&#10;" type="java.lang.Error">java.lang.Error: 
+Unresolved compilation problem: 
+	players cannot be resolved or is not a field
+
+	at edu.cmu.cs780.hw3.BoardTest.testPlayFirstMove(BoardTest.java:53)
+</error>
+  </testcase>
 </testsuite>

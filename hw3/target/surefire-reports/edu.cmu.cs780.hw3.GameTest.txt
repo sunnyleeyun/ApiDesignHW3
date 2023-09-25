@@ -1,4 +1,11 @@
 -------------------------------------------------------------------------------
 Test set: edu.cmu.cs780.hw3.GameTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0 s - in edu.cmu.cs780.hw3.GameTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in edu.cmu.cs780.hw3.GameTest
+testPlayFirstMoveSeed4(edu.cmu.cs780.hw3.GameTest)  Time elapsed: 0 s  <<< ERROR!
+java.lang.Error: 
+Unresolved compilation problem: 
+	players cannot be resolved or is not a field
+
+	at edu.cmu.cs780.hw3.GameTest.testPlayFirstMoveSeed4(GameTest.java:43)
+

@@ -34,10 +34,6 @@ public class Board {
      * Number of checkers placed on the board.
      */
     private int checkersCount;
-    /**
-     * Array of players playing the game.
-     */
-    private Player[] players;
 
     /**
      * No-arg constructor of the Board class.
@@ -46,11 +42,6 @@ public class Board {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
         this.checkersCount = 0;
-        // @FIXME: random selection
-        // 0 always start first
-        this.players = new Player[PLAYER_COUNT];
-        this.players[0] = new HumanPlayer(1);
-        this.players[1] = new HumanPlayer(2);
     }
 
     /**
@@ -69,7 +60,7 @@ public class Board {
     /**
      * Return string of pretty printed board.
      */
-    public String prettyPrintBoard() {
+    public String prettyPrint() {
         String res = "";
         for (int i = 0; i < ROW_SIZE; ++i) {
             for (int j = 0; j < COL_SIZE; ++j) {
@@ -90,12 +81,11 @@ public class Board {
      * player's checker is added to the game board. If the selected column is
      * already full, an appropriate message is displayed.
      */
-    public void play() {
-        if (gameIsOver()) {
+    public void play(Player currentPlayer) {
+        if (hasNoEmptySpace()) {
             outputGameIsOver();
             return;
         }
-        Player currentPlayer = getCurrentPlayer();
         int column = currentPlayer.selectColumn();
         if (canPlaceChecker(column)) {
             addToBoard(column, currentPlayer.getPlayerId());
@@ -109,21 +99,21 @@ public class Board {
      * 
      * @param col The column number of the new checker
      */
-    private boolean canPlaceChecker(int col) {
+    public boolean canPlaceChecker(int col) {
         return this.gameBoard[0][col] == 0;
     }
 
     /**
      * Return Player object based on checkerCount.
      */
-    private Player getCurrentPlayer() {
-        return players[checkersCount % PLAYER_COUNT];
-    }
+    // private Player getCurrentPlayer(Player[] players) {
+    // return players[checkersCount % PLAYER_COUNT];
+    // }
 
     /**
      * Return true if board is full, else false.
      */
-    private boolean gameIsOver() {
+    public boolean hasNoEmptySpace() {
         return checkersCount == ROW_SIZE * COL_SIZE;
     }
 
