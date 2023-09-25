@@ -29,12 +29,49 @@ public class Board {
      */
     private int[][] gameBoard;
 
+    private int checkersCount;
+
     /**
      * No-arg constructor of the Board class.
      */
     public Board() {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
+        this.checkersCount = 0;
+    }
+
+    public Board(int[][] newBoard) {
+        this.gameBoard = newBoard;
+        this.checkersCount = 0;
+    }
+
+    public int[][] getBoard() {
+        return gameBoard;
+    }
+
+    public String outputBoard() {
+        String res = "";
+        for (int i = 0; i < ROW_SIZE; ++i) {
+            for (int j = 0; j < COL_SIZE; ++j) {
+                res += String.valueOf(gameBoard[i][j]);
+            }
+            res += '\n';
+        }
+        return res;
+    }
+
+    public void play() {
+        if (gameIsOver()) {
+            // @TODO: add
+            return;
+        }
+        if (checkersCount % 2 == 0) {
+
+        }
+    }
+
+    private boolean gameIsOver() {
+        return checkersCount == ROW_SIZE * COL_SIZE;
     }
 
     /**
