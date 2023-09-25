@@ -1,11 +1,10 @@
 package edu.cmu.cs780.hw3;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.io.PrintStream;
 
 import org.junit.After;
@@ -30,6 +29,82 @@ public class GameTest {
     @After
     public void tearDown() {
         System.setOut(standardOut);
+    }
+
+    @Test
+    public void testPlaceCheckerFirstMove() {
+        // given
+        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
+        int checkersCount = 0;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 0;
+        game.placeChecker(col);
+
+        // then
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "1000000\n";
+        assertEquals(expected, game.prettyPrintBoard());
+    }
+
+    @Test
+    public void testPlaceCheckerSecondMove() {
+        // given
+        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
+        int checkersCount = 1;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 0;
+        game.placeChecker(col);
+        game.placeChecker(col);
+
+        // then
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "2000000\n" +
+                "1000000\n";
+        assertEquals(expected, game.prettyPrintBoard());
+    }
+
+    @Test
+    public void testPlaceCheckerWinMove() {
+        // given
+        int newBoard[][] = {
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 }
+        };
+        int checkersCount = 6;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 0;
+        game.placeChecker(col);
+
+        // then
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "1000000\n" +
+                "1200000\n" +
+                "1200000\n" +
+                "1200000\n";
+        assertEquals(expected, game.prettyPrintBoard());
+        assertFalse(game.isNotOver());
+        assertTrue(game.hasWinner());
     }
 
     @Test
@@ -153,51 +228,6 @@ public class GameTest {
                 "0000000\n" +
                 "0000000\n" +
                 "0000000\n";
-        assertEquals(expected, game.prettyPrintBoard());
-    }
-
-    @Test
-    public void testPlaceCheckerFirstMove() {
-        // given
-        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-        int checkersCount = 0;
-        int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
-
-        // when
-        int col = 0;
-        game.placeChecker(col);
-
-        // then
-        String expected = "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "1000000\n";
-        assertEquals(expected, game.prettyPrintBoard());
-    }
-
-    @Test
-    public void testPlaceCheckerSecondMove() {
-        // given
-        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-        int checkersCount = 0;
-        int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
-
-        // when
-        int col = 0;
-        game.placeChecker(col);
-        game.placeChecker(col);
-
-        // then
-        String expected = "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "0000000\n" +
-                "2000000\n" +
-                "1000000\n";
         assertEquals(expected, game.prettyPrintBoard());
     }
 

@@ -120,7 +120,7 @@ public class Game {
      * 
      * @return true if the current player wins, return false if it is not.
      */
-    private boolean hasWinner() {
+    public boolean hasWinner() {
         return hasWinner(gameBoard);
     }
 
