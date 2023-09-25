@@ -9,15 +9,15 @@ public class Board {
     /**
      * Integer variable indicating the number of rows.
      */
-    private static final int ROWSIZE = 6;
+    private static final int ROW_SIZE = 6;
     /**
      * Integer variable indicating the number of rows.
      */
-    private static final int COLSIZE = 7;
+    private static final int COL_SIZE = 7;
     /**
      * Integer variable indicating the number of connected checkers to win.
      */
-    private static final int WINSIZE = 4;
+    private static final int WIN_SIZE = 4;
     /**
      * Integer array representing all possible directions on the board.
      * Horizontal, Vertical, Diagonal (Top-left to Bottom-right), and
@@ -33,7 +33,7 @@ public class Board {
      * No-arg constructor of the Board class.
      */
     public Board() {
-        int[][] newBoard = new int[ROWSIZE][COLSIZE];
+        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
     }
 
@@ -48,7 +48,7 @@ public class Board {
      *         return -1 if can't
      */
     public int addToBoard(int colNum, int playerNum) {
-        for (int row = ROWSIZE; row >= 0; row--) {
+        for (int row = ROW_SIZE; row >= 0; row--) {
             if (this.gameBoard[row][colNum] != 0) {
                 this.gameBoard[row][colNum] = playerNum;
                 return row;
@@ -103,11 +103,11 @@ public class Board {
     private boolean checkSingleDirection(int row, int col, int dRow, int dCol, int target) {
         int count = 0;
         // Check in both directions
-        for (int i = -(WINSIZE - 1); i <= WINSIZE - 1; i++) {
+        for (int i = -(WIN_SIZE - 1); i <= WIN_SIZE - 1; i++) {
             int newRow = row + i * dRow;
             int newCol = col + i * dCol;
-            if (newRow >= 0 && newRow < ROWSIZE &&
-                    newCol >= 0 && newCol < COLSIZE &&
+            if (newRow >= 0 && newRow < ROW_SIZE &&
+                    newCol >= 0 && newCol < COL_SIZE &&
                     this.gameBoard[newRow][newCol] == target) {
                 count++;
                 if (count == 4) {
