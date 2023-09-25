@@ -49,9 +49,9 @@ public class Board {
         this.players[1] = new HumanPlayer(2);
     }
 
-    public Board(int[][] newBoard, Player[] players) {
+    public Board(int[][] newBoard, int checkersCount, Player[] players) {
         this.gameBoard = newBoard;
-        this.checkersCount = 0;
+        this.checkersCount = checkersCount;
         this.players = players;
     }
 
@@ -76,7 +76,6 @@ public class Board {
         int column = 0;
         if (canPlaceChecker(column)) {
             addToBoard(column, currentPlayer.getPlayerId());
-            checkersCount++;
         } else {
             outputColumnFull();
         }
@@ -103,9 +102,7 @@ public class Board {
     }
 
     /**
-     * Try to add a new checker (represented by playerNum)
-     * to the board. Return the newly inserted row number
-     * if success, return -1 if impossible to do this column.
+     * Add a new checker (represented by playerNum) to the board.
      * 
      * @param col       The column number of the new checker
      * @param playerNum The player number (1 or 2)
@@ -114,6 +111,7 @@ public class Board {
         for (int row = ROW_SIZE - 1; row >= 0; row--) {
             if (this.gameBoard[row][col] == 0) {
                 this.gameBoard[row][col] = playerNum;
+                checkersCount++;
                 break;
             }
         }
