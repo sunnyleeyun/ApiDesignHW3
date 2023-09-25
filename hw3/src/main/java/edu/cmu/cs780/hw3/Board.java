@@ -117,7 +117,7 @@ public class Board {
      * Return Player object based on checkerCount.
      */
     private Player getCurrentPlayer() {
-        return players[checkersCount % 2];
+        return players[checkersCount % PLAYER_COUNT];
     }
 
     /**
