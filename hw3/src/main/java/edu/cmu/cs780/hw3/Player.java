@@ -2,7 +2,8 @@ package edu.cmu.cs780.hw3;
 
 /**
  * Homework 3
- * @author Zihao Yang (zihaoy2@andrew.cmu.edu)
+ * 
+ * @author Zihao Yang (zihaoy2@andrew.cmu.edu), Yun Lee (yunl3@andrew.cmu.edu)
  */
 public interface Player {
     /**
@@ -10,6 +11,7 @@ public interface Player {
      * column number to add checker to the board.
      */
     int selectColumn();
+
     /**
      * A method that returns the player ID.
      */

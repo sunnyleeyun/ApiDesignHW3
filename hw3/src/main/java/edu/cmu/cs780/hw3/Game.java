@@ -4,7 +4,8 @@ import java.util.Random;
 
 /**
  * Homework 3
- * @author Zihao Yang (zihaoy2@andrew.cmu.edu)
+ * 
+ * @author Zihao Yang (zihaoy2@andrew.cmu.edu), Yun Lee (yunl3@andrew.cmu.edu)
  */
 public class Game {
     /**
@@ -30,7 +31,8 @@ public class Game {
 
     /**
      * Constructor to create a Game using two players.
-     * @param firstPlayer The first player of this game
+     * 
+     * @param firstPlayer  The first player of this game
      * @param secondPlayer The second player of this game
      */
     public Game(Player firstPlayer, Player secondPlayer) {
@@ -43,7 +45,8 @@ public class Game {
 
     /**
      * Randomly decide which player plays first.
-     * @param firstPlayer The first player of this game
+     * 
+     * @param firstPlayer  The first player of this game
      * @param secondPlayer The second player of this game
      * @return The player that plays first
      */
@@ -58,8 +61,9 @@ public class Game {
     }
 
     /**
-     * Check whether the current player wins after it add a checker to 
+     * Check whether the current player wins after it add a checker to
      * the board.
+     * 
      * @param lastRow The row number the current player inserts a checker
      * @param lastCol The column number the current player inserts a checker
      * @return true if the current player wins, return false if it is not.

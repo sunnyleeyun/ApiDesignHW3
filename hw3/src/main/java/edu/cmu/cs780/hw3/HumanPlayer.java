@@ -4,7 +4,8 @@ import java.util.Scanner;
 
 /**
  * Homework 3
- * @author Zihao Yang (zihaoy2@andrew.cmu.edu)
+ * 
+ * @author Zihao Yang (zihaoy2@andrew.cmu.edu), Yun Lee (yunl3@andrew.cmu.edu)
  */
 public class HumanPlayer implements Player {
     /**
@@ -14,6 +15,7 @@ public class HumanPlayer implements Player {
 
     /**
      * Constructor to create a human player with input player ID.
+     * 
      * @param id Integer representation of the player id
      */
     public HumanPlayer(int id) {
@@ -23,6 +25,7 @@ public class HumanPlayer implements Player {
     /**
      * A method that asks the player to input a
      * column number between 1 and 7.
+     * 
      * @return Integer representation of the chosen column number.
      */
     @Override
@@ -49,6 +52,7 @@ public class HumanPlayer implements Player {
 
     /**
      * Returns the player ID of a Player object.
+     * 
      * @return Integer representation of player ID
      */
     @Override
