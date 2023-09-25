@@ -23,8 +23,8 @@ public class HumanPlayer implements Player {
     }
 
     /**
-     * A method that asks the player to input a
-     * column number between 1 and 7.
+     * A method that asks the player to input a column number
+     * and return column index between 0 and 6.
      * 
      * @return Integer representation of the chosen column number.
      */
@@ -37,7 +37,7 @@ public class HumanPlayer implements Player {
                 int columnChoice = scanner.nextInt();
                 if (columnChoice >= 1 && columnChoice <= 7) {
                     scanner.close();
-                    return columnChoice;
+                    return columnChoice - 1;
                 } else {
                     System.out.println("Invalid choice. Please enter a number between 1 to 7.");
                 }

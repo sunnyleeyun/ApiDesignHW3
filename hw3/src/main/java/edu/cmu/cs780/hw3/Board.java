@@ -18,6 +18,8 @@ public class Board {
      * Integer variable indicating the number of connected checkers to win.
      */
     private static final int WIN_SIZE = 4;
+
+    private static final int PLAYER_COUNT = 2;
     /**
      * Integer array representing all possible directions on the board.
      * Horizontal, Vertical, Diagonal (Top-left to Bottom-right), and
@@ -31,6 +33,8 @@ public class Board {
 
     private int checkersCount;
 
+    private Player[] players;
+
     /**
      * No-arg constructor of the Board class.
      */
@@ -38,15 +42,17 @@ public class Board {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
         this.checkersCount = 0;
+        // @FIXME: random selection
+        // 0 always start first
+        this.players = new Player[PLAYER_COUNT];
+        this.players[0] = new HumanPlayer(1);
+        this.players[1] = new HumanPlayer(2);
     }
 
-    public Board(int[][] newBoard) {
+    public Board(int[][] newBoard, Player[] players) {
         this.gameBoard = newBoard;
         this.checkersCount = 0;
-    }
-
-    public int[][] getBoard() {
-        return gameBoard;
+        this.players = players;
     }
 
     public String outputBoard() {
@@ -62,12 +68,24 @@ public class Board {
 
     public void play() {
         if (gameIsOver()) {
-            // @TODO: add
             return;
         }
-        if (checkersCount % 2 == 0) {
-
+        Player currentPlayer = getCurrentPlayer();
+        // int column = currentPlayer.selectColumn();
+        int column = 0;
+        if (canPlaceChecker(column)) {
+            addToBoard(column, currentPlayer.getPlayerId());
         }
+        checkersCount++;
+    }
+
+    private boolean canPlaceChecker(int col) {
+        // @TODO
+        return true;
+    }
+
+    private Player getCurrentPlayer() {
+        return players[checkersCount % 2];
     }
 
     private boolean gameIsOver() {
@@ -79,15 +97,15 @@ public class Board {
      * to the board. Return the newly inserted row number
      * if success, return -1 if impossible to do this column.
      * 
-     * @param colNum    The column number of the new checker
+     * @param col       The column number of the new checker
      * @param playerNum The player number (1 or 2)
      * @return The row number inserted to if can be added,
      *         return -1 if can't
      */
-    public int addToBoard(int colNum, int playerNum) {
-        for (int row = ROW_SIZE; row >= 0; row--) {
-            if (this.gameBoard[row][colNum] != 0) {
-                this.gameBoard[row][colNum] = playerNum;
+    public int addToBoard(int col, int playerNum) {
+        for (int row = ROW_SIZE - 1; row >= 0; row--) {
+            if (this.gameBoard[row][col] == 0) {
+                this.gameBoard[row][col] = playerNum;
                 return row;
             }
         }
