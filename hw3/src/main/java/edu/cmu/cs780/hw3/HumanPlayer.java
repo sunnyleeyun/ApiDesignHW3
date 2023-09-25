@@ -33,6 +33,7 @@ public class HumanPlayer implements Player {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter a column (1-7) for your move: ");
         while (true) {
+            System.out.print("\n");
             try {
                 int columnChoice = scanner.nextInt();
                 if (columnChoice >= 1 && columnChoice <= 7) {

@@ -96,8 +96,7 @@ public class Board {
             return;
         }
         Player currentPlayer = getCurrentPlayer();
-        // int column = currentPlayer.selectColumn();
-        int column = 0;
+        int column = currentPlayer.selectColumn();
         if (canPlaceChecker(column)) {
             addToBoard(column, currentPlayer.getPlayerId());
         } else {
