@@ -55,7 +55,7 @@ public class Board {
         this.players = players;
     }
 
-    public String outputBoard() {
+    public String prettyPrintBoard() {
         String res = "";
         for (int i = 0; i < ROW_SIZE; ++i) {
             for (int j = 0; j < COL_SIZE; ++j) {
@@ -68,6 +68,7 @@ public class Board {
 
     public void play() {
         if (gameIsOver()) {
+            outputGameIsOver();
             return;
         }
         Player currentPlayer = getCurrentPlayer();
@@ -75,13 +76,22 @@ public class Board {
         int column = 0;
         if (canPlaceChecker(column)) {
             addToBoard(column, currentPlayer.getPlayerId());
+            checkersCount++;
+        } else {
+            outputColumnFull();
         }
-        checkersCount++;
+    }
+
+    private void outputColumnFull() {
+        System.out.print("This column is full!");
+    }
+
+    private void outputGameIsOver() {
+        System.out.print("Game is over. Please start another game.");
     }
 
     private boolean canPlaceChecker(int col) {
-        // @TODO
-        return true;
+        return this.gameBoard[0][col] == 0;
     }
 
     private Player getCurrentPlayer() {
@@ -99,17 +109,14 @@ public class Board {
      * 
      * @param col       The column number of the new checker
      * @param playerNum The player number (1 or 2)
-     * @return The row number inserted to if can be added,
-     *         return -1 if can't
      */
-    public int addToBoard(int col, int playerNum) {
+    public void addToBoard(int col, int playerNum) {
         for (int row = ROW_SIZE - 1; row >= 0; row--) {
             if (this.gameBoard[row][col] == 0) {
                 this.gameBoard[row][col] = playerNum;
-                return row;
+                break;
             }
         }
-        return -1;
     }
 
     /**
