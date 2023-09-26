@@ -27,7 +27,7 @@ public class Game {
     /**
      * Count of checkers placed on the board.
      */
-    private int checkersCount;
+    private int checkerCount;
     /**
      * ID of the current player.
      */
@@ -40,8 +40,8 @@ public class Game {
     public Game() {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
-        this.checkersCount = 0;
-        this.currentPlayer = randomStart();
+        this.checkerCount = 0;
+        this.currentPlayer = selectStartPlayer();
     }
 
     /**
@@ -49,32 +49,32 @@ public class Game {
      * the current number of checkers, and the starting player.
      * 
      * @param newBoard      Input game board represented as a 2D array.
-     * @param checkersCount Current number of checkers on the board.
+     * @param checkerCount Current number of checkers on the board.
      * @param currentPlayer The ID of the player set to play next.
      */
-    public Game(int[][] newBoard, int checkersCount, int currentPlayer) {
+    public Game(int[][] newBoard, int checkerCount, int currentPlayer) {
         this.gameBoard = newBoard;
-        this.checkersCount = checkersCount;
+        this.checkerCount = checkerCount;
         this.currentPlayer = currentPlayer;
     }
 
     /**
-     * Determines if the game can continue or if it has reached an end condition.
+     * Determines if the game has reached an end condition or it can be continued.
      * This method also prints out the game status to the console.
      *
-     * @return Returns true if the game can continue, false if the game has reached
+     * @return Returns false if the game is not over, false if the game has reached
      *         a draw or a win condition.
      */
-    public boolean canGameContinue() {
-        if (boardIsFull()) {
+    public boolean isGameOver() {
+        if (isBoardFull()) {
             System.out.println("It's a draw! \n");
-            return false;
+            return true;
         } else if (hasWinner()) {
-            System.out.println("Winner is " + winnerPlayer() + "! Good Game! \n");
-            return false;
+            System.out.println("Winner is " + getWinner() + "! Good Game! \n");
+            return true;
         } else {
             System.out.println("Player " + currentPlayer + ". Pick a column.");
-            return true;
+            return false;
         }
     }
 
@@ -84,7 +84,7 @@ public class Game {
      * @return Returns an Integer representation of the player id (1 or 2)
      *         to start first.
      */
-    private int randomStart() {
+    private int selectStartPlayer() {
         Random rand = new Random();
         int value = 1 + rand.nextInt(2);
         return value;
@@ -95,7 +95,8 @@ public class Game {
      * 
      * @return Returns a String representation of pretty printed board.
      */
-    public String prettyPrintBoard() {
+    @Override
+    public String toString() {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < ROW_SIZE; ++i) {
             for (int j = 0; j < COL_SIZE; ++j) {
@@ -113,7 +114,7 @@ public class Game {
      * @return Returns true if the column is not full and can accept a checker, else
      *         false.
      */
-    private boolean canPlaceChecker(int columnNum) {
+    private boolean isColumnAvailable(int columnNum) {
         return (columnNum >= 0 && columnNum <= 6) && this.gameBoard[0][columnNum] == 0;
     }
 
@@ -148,7 +149,7 @@ public class Game {
      *                  to place their checker.
      */
     public void placeChecker(int columnNum) {
-        if (canPlaceChecker(columnNum)) {
+        if (isColumnAvailable(columnNum)) {
             addToBoard(columnNum, currentPlayer);
             switchRole();
         } else {
@@ -175,7 +176,7 @@ public class Game {
         for (int row = ROW_SIZE - 1; row >= 0; row--) {
             if (this.gameBoard[row][columnNum] == 0) {
                 this.gameBoard[row][columnNum] = playerId;
-                checkersCount++;
+                checkerCount++;
                 break;
             }
         }
@@ -186,8 +187,8 @@ public class Game {
      * 
      * @return Returns true if the board is full, otherwise false.
      */
-    private boolean boardIsFull() {
-        return checkersCount == ROW_SIZE * COL_SIZE;
+    private boolean isBoardFull() {
+        return checkerCount == ROW_SIZE * COL_SIZE;
     }
 
     /**
@@ -198,7 +199,7 @@ public class Game {
      * 
      * @return Integer representation of the potential winner's ID.
      */
-    private int winnerPlayer() {
+    private int getWinner() {
         return currentPlayer == 1 ? 2 : 1;
     }
 

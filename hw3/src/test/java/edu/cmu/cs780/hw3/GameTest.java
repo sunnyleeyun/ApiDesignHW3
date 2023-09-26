@@ -50,7 +50,7 @@ public class GameTest {
                 "0000000\n" +
                 "0000000\n" +
                 "1000000\n";
-        assertEquals(expected, game.prettyPrintBoard());
+        assertEquals(expected, game.toString());
     }
 
     @Test
@@ -73,7 +73,7 @@ public class GameTest {
                 "0000000\n" +
                 "2000000\n" +
                 "1000000\n";
-        assertEquals(expected, game.prettyPrintBoard());
+        assertEquals(expected, game.toString());
     }
 
     @Test
@@ -102,8 +102,8 @@ public class GameTest {
                 "1200000\n" +
                 "1200000\n" +
                 "1200000\n";
-        assertEquals(expected, game.prettyPrintBoard());
-        assertFalse(game.canGameContinue());
+        assertEquals(expected, game.toString());
+        assertFalse(!game.isGameOver());
         assertTrue(game.hasWinner());
     }
 
@@ -276,7 +276,7 @@ public class GameTest {
                 "0000000\n" +
                 "0000000\n" +
                 "0000000\n";
-        assertEquals(expected, game.prettyPrintBoard());
+        assertEquals(expected, game.toString());
     }
 
 }
