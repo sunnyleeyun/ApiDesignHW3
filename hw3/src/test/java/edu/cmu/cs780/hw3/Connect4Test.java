@@ -14,7 +14,7 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class GameTest {
+public class Connect4Test {
     private static final int ROW_SIZE = 6;
     private static final int COL_SIZE = 7;
 
