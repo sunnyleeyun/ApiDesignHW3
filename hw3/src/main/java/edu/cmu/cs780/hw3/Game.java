@@ -105,11 +105,11 @@ public class Game {
 
     /**
      * Checks if a checker can be placed in the specified column.
-     * @param col The column number to check (0 to 6 inclusive).
+     * @param columnNum The column number to check (0 to 6 inclusive).
      * @return Returns true if the column is not full and can accept a checker, else false.
      */
-    private boolean canPlaceChecker(int col) {
-        return this.gameBoard[0][col] == 0 && (col >= 0 && col <= 6);
+    private boolean canPlaceChecker(int columnNum) {
+        return this.gameBoard[0][columnNum] == 0 && (columnNum >= 0 && columnNum <= 6);
     }
 
     /**
@@ -138,12 +138,12 @@ public class Game {
      * added to the game board and the role is switched to the other player. If 
      * the chosen column is already full, an appropriate message is displayed.
      * 
-     * @param col The index-based column number where the current player wants 
+     * @param columnNum The index-based column number where the current player wants 
      * to place their checker.
      */
-    public void placeChecker(int col) {
-        if (canPlaceChecker(col)) {
-            addToBoard(col, currentPlayer);
+    public void placeChecker(int columnNum) {
+        if (canPlaceChecker(columnNum)) {
+            addToBoard(columnNum, currentPlayer);
             switchRole();
         } else {
             System.out.println("This column is full.\n");
@@ -162,13 +162,13 @@ public class Game {
     /**
      * Adds the current player's checker to the specified column on the board.
      * 
-     * @param col      Column where the checker is to be placed.
-     * @param playerId The player id (either 1 or 2).
+     * @param columnNum Column where the checker is to be placed.
+     * @param playerId  The player id (either 1 or 2).
      */
-    private void addToBoard(int col, int playerId) {
+    private void addToBoard(int columnNum, int playerId) {
         for (int row = ROW_SIZE - 1; row >= 0; row--) {
-            if (this.gameBoard[row][col] == 0) {
-                this.gameBoard[row][col] = playerId;
+            if (this.gameBoard[row][columnNum] == 0) {
+                this.gameBoard[row][columnNum] = playerId;
                 checkersCount++;
                 break;
             }
