@@ -45,7 +45,7 @@ public class Game {
     }
 
     /**
-     * Constructor to create a Game instance using a provided game board,
+     * Creates a Game object using a provided game board,
      * the current number of checkers, and the starting player.
      * 
      * @param newBoard      Input game board represented as a 2D array.
@@ -91,7 +91,7 @@ public class Game {
     }
 
     /**
-     * Transform the board into a string to be printed in the terminal.
+     * Transforms the board into a String to be printed in the terminal.
      * 
      * @return Returns a String representation of pretty printed board.
      */
@@ -108,7 +108,7 @@ public class Game {
     }
 
     /**
-     * Checks if a checker can be placed in the specified column.
+     * Determines if a checker can be placed in the specified column.
      * 
      * @param columnNum The column number to check (0 to 6 inclusive).
      * @return Returns true if the column is not full and can accept a checker, else
@@ -145,8 +145,8 @@ public class Game {
      * added to the game board and the role is switched to the other player. If
      * the chosen column is already full, an appropriate message is displayed.
      * 
-     * @param columnNum The index-based column number where the current player wants
-     *                  to place their checker.
+     * @param columnNum The index-based column number (0 to 6 inclusive) where 
+     *                  the current player wants to place their checker.
      */
     public void placeChecker(int columnNum) {
         if (isColumnAvailable(columnNum)) {
