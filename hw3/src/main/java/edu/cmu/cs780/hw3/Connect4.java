@@ -194,7 +194,7 @@ public class Connect4 {
      * This method assumes that if a win condition is met, the current player
      * would be the one who just played and won the game.
      * 
-     * @return integer representation of the potential winner's ID.
+     * @return the potential winner's ID in integer.
      */
     private int getWinner() {
         return currentPlayer == 1 ? 2 : 1;
