@@ -48,7 +48,7 @@ public class Game {
      * Constructor to create a Game instance using a provided game board, 
      * the current number of checkers, and the starting player.
      * 
-     * @param newBoard      The board state of the game.
+     * @param newBoard      Input game board represented as a 2D array.
      * @param checkersCount Current number of checkers on the board.
      * @param currentPlayer The ID of the player set to play next.
      */
@@ -113,19 +113,19 @@ public class Game {
     }
 
     /**
-     * Determines if there's a winner based on the current game board state.
+     * Determines if there is a winner based on the current game board state.
      * 
-     * @return true if the current player wins, false otherwise.
+     * @return Returns true if the current player wins, false otherwise.
      */
     public boolean hasWinner() {
         return hasWinner(this.gameBoard);
     }
 
     /**
-     * Determines if there's a winner on a given game board.
+     * Determines if there is a winner on a given game board.
      * 
-     * @param gameBoard The current state of the game board.
-     * @return Returns true if there's a winner, false otherwise.
+     * @param gameBoard Input Game board represented as a 2D array.
+     * @return Returns true if there is a winner, false otherwise.
      */
     public boolean hasWinner(int[][] gameBoard) {
         return verticalHasWinner(gameBoard) || horizontalHasWinner(gameBoard) ||             diagonalSWNEHasWinner(gameBoard) || diagonalNWSEHasWinner(gameBoard);

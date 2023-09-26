@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.cmu.cs780.hw3.GameTest" time="0.014" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="edu.cmu.cs780.hw3.GameTest" time="0.015" tests="10" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="18"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/opt/homebrew/Cellar/openjdk/18.0.2.1/libexec/openjdk.jdk/Contents/Home/lib"/>
-    <property name="sun.java.command" value="/Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/surefire/surefirebooter6548104122579201302.jar /Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/surefire 2023-09-25T21-55-03_905-jvmRun1 surefire11532872169949769479tmp surefire_010645663443628629463tmp"/>
+    <property name="sun.java.command" value="/Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/surefire/surefirebooter5046001786020065452.jar /Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/surefire 2023-09-25T22-02-23_017-jvmRun1 surefire14040706759159962644tmp surefire_05201335430359425018tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/test-classes:/Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/classes:/Users/zihaoyang/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/zihaoyang/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="apple.awt.application.name" value="ForkedBooter"/>
-    <property name="surefire.real.class.path" value="/Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/surefire/surefirebooter6548104122579201302.jar"/>
+    <property name="surefire.real.class.path" value="/Users/zihaoyang/Desktop/CMUFiles/Courses/23 Fall/17780 API Design and Implementation/Homework/hw3/ApiDesignHW3/hw3/target/surefire/surefirebooter5046001786020065452.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.runtime.version" value="18.0.2.1+0"/>
@@ -56,14 +56,14 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="62.0"/>
   </properties>
-  <testcase name="testHasWinner1" classname="edu.cmu.cs780.hw3.GameTest" time="0.002"/>
+  <testcase name="testHasWinner1" classname="edu.cmu.cs780.hw3.GameTest" time="0.003"/>
   <testcase name="testHasWinner2" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
   <testcase name="testHasWinner3" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
   <testcase name="testHasWinner4" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
   <testcase name="testHasWinner5" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
   <testcase name="testHasWinner6" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
   <testcase name="testEmptyPrettyPrintBoard" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
-  <testcase name="testPlaceCheckerWinMove" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
-  <testcase name="testPlaceCheckerFirstMove" classname="edu.cmu.cs780.hw3.GameTest" time="0.001"/>
+  <testcase name="testPlaceCheckerWinMove" classname="edu.cmu.cs780.hw3.GameTest" time="0.001"/>
+  <testcase name="testPlaceCheckerFirstMove" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
   <testcase name="testPlaceCheckerSecondMove" classname="edu.cmu.cs780.hw3.GameTest" time="0"/>
 </testsuite>
