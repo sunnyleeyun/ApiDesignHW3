@@ -37,7 +37,7 @@ public class GameTest {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         int checkersCount = 0;
         int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
+        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
 
         // when
         int col = 0;
@@ -59,7 +59,7 @@ public class GameTest {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         int checkersCount = 1;
         int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
+        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
 
         // when
         int col = 0;
@@ -89,7 +89,7 @@ public class GameTest {
         };
         int checkersCount = 6;
         int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
+        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
 
         // when
         int col = 0;
@@ -120,7 +120,7 @@ public class GameTest {
         };
         int checkersCount = 11;
         int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
+        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
 
         // when
         int col = 0;
@@ -144,7 +144,7 @@ public class GameTest {
         };
         int checkersCount = 11;
         int currentPlayer = 1;
-        Game game = new Game(newBoard, checkersCount, currentPlayer);
+        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
 
         // when
         int col = 7;
@@ -159,7 +159,7 @@ public class GameTest {
     public void testHasWinner1() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
         int gameboard[][] = {
                 { 0, 0, 0, 0, 0, 0, 0 },
                 { 0, 0, 0, 0, 0, 0, 0 },
@@ -177,7 +177,7 @@ public class GameTest {
     public void testHasWinner2() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
         int gameboard[][] = {
                 { 0, 0, 0, 0, 0, 0, 0 },
                 { 0, 0, 0, 0, 0, 0, 0 },
@@ -195,7 +195,7 @@ public class GameTest {
     public void testHasWinner3() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
         int gameboard[][] = {
                 { 0, 0, 0, 0, 0, 0, 0 },
                 { 0, 0, 0, 0, 0, 0, 0 },
@@ -213,7 +213,7 @@ public class GameTest {
     public void testHasWinner4() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
         int gameboard[][] = {
                 { 0, 0, 0, 0, 0, 0, 0 },
                 { 0, 0, 0, 0, 0, 0, 0 },
@@ -231,7 +231,7 @@ public class GameTest {
     public void testHasWinner5() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
         int gameboard[][] = {
                 { 0, 0, 0, 0, 0, 0, 0 },
                 { 0, 0, 0, 0, 0, 0, 0 },
@@ -249,7 +249,7 @@ public class GameTest {
     public void testHasWinner6() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
         int gameboard[][] = {
                 { 0, 0, 0, 0, 0, 0, 0 },
                 { 0, 0, 0, 0, 0, 0, 0 },
@@ -267,7 +267,7 @@ public class GameTest {
     public void testEmptyPrettyPrintBoard() {
         // given
         // when
-        Game game = new Game();
+        Connect4 game = new Connect4();
 
         // then
         String expected = "0000000\n" +
