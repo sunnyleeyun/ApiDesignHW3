@@ -108,6 +108,54 @@ public class GameTest {
     }
 
     @Test
+    public void testCanPlaceChecker1() {
+        // given
+        int newBoard[][] = {
+                { 2, 0, 0, 0, 0, 0, 0 },
+                { 2, 1, 0, 0, 0, 0, 0 },
+                { 2, 1, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 }
+        };
+        int checkersCount = 11;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 0;
+        game.placeChecker(col);
+
+        // then
+        String expected = "This column is invalid. Please pick another one.";
+        assertEquals(expected, outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    public void testCanPlaceChecker2() {
+        // given
+        int newBoard[][] = {
+                { 2, 0, 0, 0, 0, 0, 0 },
+                { 2, 1, 0, 0, 0, 0, 0 },
+                { 2, 1, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 },
+                { 1, 2, 0, 0, 0, 0, 0 }
+        };
+        int checkersCount = 11;
+        int currentPlayer = 1;
+        Game game = new Game(newBoard, checkersCount, currentPlayer);
+
+        // when
+        int col = 7;
+        game.placeChecker(col);
+
+        // then
+        String expected = "This column is invalid. Please pick another one.";
+        assertEquals(expected, outputStreamCaptor.toString().trim());
+    }
+
+    @Test
     public void testHasWinner1() {
         // given
         // when
