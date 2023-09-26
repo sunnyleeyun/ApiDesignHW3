@@ -103,7 +103,7 @@ public class GameTest {
                 "1200000\n" +
                 "1200000\n";
         assertEquals(expected, game.prettyPrintBoard());
-        assertFalse(game.isGameOver());
+        assertFalse(game.canGameContinue());
         assertTrue(game.hasWinner());
     }
 

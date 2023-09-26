@@ -21,10 +21,6 @@ public class Game {
      */
     private static final int WIN_SIZE = 4;
     /**
-     * Random seed used to decide the starting player's ID.
-     */
-    private static final int SEED = 4;
-    /**
      * Game board represented as a 2D array.
      */
     private int[][] gameBoard;
@@ -63,10 +59,12 @@ public class Game {
     }
 
     /**
-     * Check the ending conditions of the game.
-     * @return Returns true if the game has ended, false otherwise.
+     * Determines if the game can continue or if it has reached an end condition.
+     * This method also prints out the game status to the console.
+     *
+     * @return Returns true if the game can continue, false if the game has reached a draw or a win condition.
      */
-    public boolean isGameOver() {
+    public boolean canGameContinue() {
         if (boardIsFull()) {
             System.out.println("It's a draw! \n");
             return false;
@@ -85,7 +83,7 @@ public class Game {
      * to start first.
      */
     private int randomStart() {
-        Random rand = new Random(SEED);
+        Random rand = new Random();
         int value = 1 + rand.nextInt(2);
         return value;
     }
@@ -107,26 +105,24 @@ public class Game {
 
     /**
      * Checks if a checker can be placed in the specified column.
-     * @param col The column number to check.
+     * @param col The column number to check (0 to 6 inclusive).
      * @return Returns true if the column is not full and can accept a checker, else false.
      */
-    public boolean canPlaceChecker(int col) {
-        return this.gameBoard[0][col] == 0;
+    private boolean canPlaceChecker(int col) {
+        return this.gameBoard[0][col] == 0 && (col >= 0 && col <= 6);
     }
 
     /**
-     * Checks if the current player wins after placing a checker on the board.
-     * This method internally calls another {@code hasWinner} method using the 
-     * current game board.
+     * Determines if there's a winner based on the current game board state.
      * 
-     * @return Returns true if the current player wins, false otherwise.
+     * @return true if the current player wins, false otherwise.
      */
     public boolean hasWinner() {
-        return hasWinner(gameBoard);
+        return hasWinner(this.gameBoard);
     }
 
     /**
-     * Determines if there's a winner on the given game board.
+     * Determines if there's a winner on a given game board.
      * 
      * @param gameBoard The current state of the game board.
      * @return Returns true if there's a winner, false otherwise.
@@ -142,7 +138,8 @@ public class Game {
      * added to the game board and the role is switched to the other player. If 
      * the chosen column is already full, an appropriate message is displayed.
      * 
-     * @param col The column number where the current player wants to place their checker.
+     * @param col The index-based column number where the current player wants 
+     * to place their checker.
      */
     public void placeChecker(int col) {
         if (canPlaceChecker(col)) {
