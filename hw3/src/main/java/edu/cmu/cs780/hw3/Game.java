@@ -9,32 +9,38 @@ import java.util.Random;
  */
 public class Game {
     /**
-     * Integer variable indicating the number of rows.
+     * Number of rows in the game board.
      */
     private static final int ROW_SIZE = 6;
     /**
-     * Integer variable indicating the number of rows.
+     * Number of columns in the game board.
      */
     private static final int COL_SIZE = 7;
     /**
-     * Integer variable indicating the number of connected checkers to win.
+     * Number of connected checkers required to win.
      */
     private static final int WIN_SIZE = 4;
-
-    private static final int SEED = 4;
-
     /**
-     * 2D array variable indicating the board of the game.
+     * Random seed used to decide the starting player's ID.
+     */
+    private static final int SEED = 4;
+    /**
+     * Game board represented as a 2D array.
      */
     private int[][] gameBoard;
-
     /**
-     * Integer variable indicating the number of checkers.
+     * Count of checkers placed on the board.
      */
     private int checkersCount;
-
+    /**
+     * ID of the current player.
+     */
     private int currentPlayer;
 
+    /**
+     * Initializes the game with an empty board, sets the checkers count to zero,
+     * and randomly decides the starting player.
+     */
     public Game() {
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
@@ -42,13 +48,25 @@ public class Game {
         this.currentPlayer = randomStart();
     }
 
+    /**
+     * Constructor to create a Game instance using a provided game board, 
+     * the current number of checkers, and the starting player.
+     * 
+     * @param newBoard      The board state of the game.
+     * @param checkersCount Current number of checkers on the board.
+     * @param currentPlayer The ID of the player set to play next.
+     */
     public Game(int[][] newBoard, int checkersCount, int currentPlayer) {
         this.gameBoard = newBoard;
         this.checkersCount = checkersCount;
         this.currentPlayer = currentPlayer;
     }
 
-    public boolean isNotOver() {
+    /**
+     * Check the ending conditions of the game.
+     * @return Returns true if the game has ended, false otherwise.
+     */
+    public boolean isGameOver() {
         if (boardIsFull()) {
             System.out.println("It's a draw! \n");
             return false;
@@ -62,9 +80,9 @@ public class Game {
     }
 
     /**
-     * Return 1 or 2 randomly selected which player plays first.
-     * 
-     * @return
+     * Randomly selects which player starts first.
+     * @return Returns an Integer representation of the player id (1 or 2) 
+     * to start first.
      */
     private int randomStart() {
         Random rand = new Random(SEED);
@@ -73,71 +91,58 @@ public class Game {
     }
 
     /**
-     * Return string of pretty printed board.
+     * Transform the board into a string to be printed to the terminal.
+     * @return Returns a String representation of pretty printed board.
      */
     public String prettyPrintBoard() {
-        String res = "";
+        StringBuilder res = new StringBuilder();
         for (int i = 0; i < ROW_SIZE; ++i) {
             for (int j = 0; j < COL_SIZE; ++j) {
-                res += String.valueOf(gameBoard[i][j]);
+                res.append(gameBoard[i][j]);
             }
-            res += '\n';
+            res.append('\n');
         }
-        return res;
+        return res.toString();
     }
 
     /**
-     * Return true if current row is not full, else false.
-     * 
-     * @param col The column number of the new checker
+     * Checks if a checker can be placed in the specified column.
+     * @param col The column number to check.
+     * @return Returns true if the column is not full and can accept a checker, else false.
      */
     public boolean canPlaceChecker(int col) {
         return this.gameBoard[0][col] == 0;
     }
 
     /**
-     * Return true if board is full, else false.
-     */
-    public boolean hasNoEmptySpace() {
-        return checkersCount == ROW_SIZE * COL_SIZE;
-    }
-
-    /**
-     * Return only the value of a corresponding cell.
+     * Checks if the current player wins after placing a checker on the board.
+     * This method internally calls another {@code hasWinner} method using the 
+     * current game board.
      * 
-     * @param row Row number of the cell in Integer
-     * @param col Column number of the cell in Integer
-     * @return The numerical value of the cell in Integer
-     */
-    public int getCellValue(int row, int col) {
-        int res = this.gameBoard[row][col];
-        return res;
-    }
-
-    /**
-     * Check whether the current player wins after it add a checker to
-     * the board.
-     * 
-     * @return true if the current player wins, return false if it is not.
+     * @return Returns true if the current player wins, false otherwise.
      */
     public boolean hasWinner() {
         return hasWinner(gameBoard);
     }
 
+    /**
+     * Determines if there's a winner on the given game board.
+     * 
+     * @param gameBoard The current state of the game board.
+     * @return Returns true if there's a winner, false otherwise.
+     */
     public boolean hasWinner(int[][] gameBoard) {
-        return verticalHasWinner(gameBoard) || horizontalHasWinner(gameBoard) || diagonalSWNEHasWinner(gameBoard)
-                || diagonalNWSEHasWinner(gameBoard);
+        return verticalHasWinner(gameBoard) || horizontalHasWinner(gameBoard) ||             diagonalSWNEHasWinner(gameBoard) || diagonalNWSEHasWinner(gameBoard);
     }
 
     /**
-     * Plays the current turn in the game.
-     *
-     * This method checks if the game is over, and if so, it outputs a message
-     * indicating that the game has ended. If the game is still ongoing, it proceeds
-     * with the current player's turn. The player is prompted to select a column for
-     * their checker placement, and if the selected column is valid (not full), the
-     * player's checker is added to the game board. If the selected column is
-     * already full, an appropriate message is displayed.
+     * Places a checker in the specified column.
+     * 
+     * If the chosen column is valid (not full), the current player's checker is 
+     * added to the game board and the role is switched to the other player. If 
+     * the chosen column is already full, an appropriate message is displayed.
+     * 
+     * @param col The column number where the current player wants to place their checker.
      */
     public void placeChecker(int col) {
         if (canPlaceChecker(col)) {
@@ -148,20 +153,25 @@ public class Game {
         }
     }
 
+    /**
+     * Switches the current player.
+     * 
+     * If the current player is player 1, it switches to player 2 and vice versa.
+     */
     private void switchRole() {
         this.currentPlayer = this.currentPlayer == 1 ? 2 : 1;
     }
 
     /**
-     * Add a new checker (represented by playerNum) to the board.
+     * Adds the current player's checker to the specified column on the board.
      * 
-     * @param col       The column number of the new checker
-     * @param playerNum The player number (1 or 2)
+     * @param col      Column where the checker is to be placed.
+     * @param playerId The player id (either 1 or 2).
      */
-    private void addToBoard(int col, int playerNum) {
+    private void addToBoard(int col, int playerId) {
         for (int row = ROW_SIZE - 1; row >= 0; row--) {
             if (this.gameBoard[row][col] == 0) {
-                this.gameBoard[row][col] = playerNum;
+                this.gameBoard[row][col] = playerId;
                 checkersCount++;
                 break;
             }
@@ -169,16 +179,32 @@ public class Game {
     }
 
     /**
-     * Return true if board is full, else false.
+     * Determines if the board is full.
+     * 
+     * @return Returns true if the board is full, otherwise false.
      */
     private boolean boardIsFull() {
         return checkersCount == ROW_SIZE * COL_SIZE;
     }
 
+    /**
+     * Retrieves the ID of the potential winning player.
+     * 
+     * This method assumes that if a win condition is met, the current player
+     * would be the one who just played and won the game.
+     * 
+     * @return Integer representation of the potential winner's ID.
+     */
     private int winnerPlayer() {
         return currentPlayer == 1 ? 2 : 1;
     }
 
+    /**
+     * Determines if there are four vertically connected checkers on the board.
+     *
+     * @param gameBoard 2D array representing the current state of the game board.
+     * @return Returns true if there are four vertically connected checkers, false otherwise.
+     */
     private boolean verticalHasWinner(int[][] gameBoard) {
         for (int col = 0; col < COL_SIZE; ++col) {
             for (int row = 0; row < ROW_SIZE - WIN_SIZE + 1; ++row) {
@@ -201,6 +227,12 @@ public class Game {
         return false;
     }
 
+    /**
+     * Determines if there are four horizontally connected checkers on the board.
+     *
+     * @param gameBoard 2D array representing the current state of the game board.
+     * @return Returns true if there are four horizontally connected checkers, false otherwise.
+     */
     private boolean horizontalHasWinner(int[][] gameBoard) {
         for (int row = 0; row < ROW_SIZE; ++row) {
             for (int col = 0; col < COL_SIZE - WIN_SIZE + 1; ++col) {
@@ -223,6 +255,14 @@ public class Game {
         return false;
     }
 
+    /**
+     * Determines if there are four diagonally connected checkers 
+     * in the south-west to north-east direction.
+     *
+     * @param gameBoard 2D array representing the current state of the game board.
+     * @return Returns true if there are four diagonally connected checkers in the 
+     * south-west to north-east direction, false otherwise.
+     */
     private boolean diagonalSWNEHasWinner(int[][] gameBoard) {
         for (int row = ROW_SIZE - WIN_SIZE + 1; row < ROW_SIZE; ++row) {
             for (int col = 0; col < COL_SIZE - WIN_SIZE + 1; ++col) {
@@ -244,6 +284,14 @@ public class Game {
         return false;
     }
 
+    /**
+     * Determines if there are four diagonally connected checkers 
+     * in the north-west to south-east direction.
+     *
+     * @param gameBoard 2D array representing the current state of the game board.
+     * @return true if there are four diagonally connected checkers in the 
+     * north-west to south-east direction, false otherwise.
+     */
     private boolean diagonalNWSEHasWinner(int[][] gameBoard) {
         for (int row = 0; row < ROW_SIZE - WIN_SIZE + 1; ++row) {
             for (int col = 0; col < COL_SIZE - WIN_SIZE + 1; ++col) {
@@ -264,5 +312,4 @@ public class Game {
         }
         return false;
     }
-
 }
