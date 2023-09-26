@@ -62,8 +62,8 @@ public class Game {
      * Determines if the game has reached an end condition or it can be continued.
      * This method also prints out the game status to the console.
      *
-     * @return false if the game is not over, true if the game has reached
-     *         a draw or a win condition.
+     * @return true if the game has reached a draw or a win condition, false if 
+     *         the game is not over.
      */
     public boolean isGameOver() {
         if (isBoardFull()) {
