@@ -91,7 +91,7 @@ public class Game {
     }
 
     /**
-     * Transform the board into a string to be printed to the terminal.
+     * Transform the board into a string to be printed in the terminal.
      * @return Returns a String representation of pretty printed board.
      */
     public String prettyPrintBoard() {
