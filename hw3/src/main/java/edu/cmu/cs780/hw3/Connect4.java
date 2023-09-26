@@ -89,9 +89,9 @@ public class Connect4 {
     }
 
     /**
-     * Transforms the board into a String to be printed in the terminal.
+     * Transforms the board into a {@code String} to be printed in the terminal.
      * 
-     * @return a String of formulated board.
+     * @return a {@code String} of formulated board.
      */
     @Override
     public String toString() {
