@@ -3,11 +3,11 @@ import java.util.Scanner;
 public class Client {
     public static void main(String[] args) {
         Game myGame = new Game();
-        System.out.println(myGame.prettyPrintBoard());
+        System.out.println(myGame.toString());
         Scanner scanner = new Scanner(System.in);
         int userInput = 0;
 
-        while (myGame.canGameContinue()){
+        while (!myGame.isGameOver()){
             while (true) {
                 System.out.print("Enter a number between 0 and 6: ");
 
@@ -30,7 +30,7 @@ public class Client {
                 }
             }
             myGame.placeChecker(userInput);
-            System.out.println(myGame.prettyPrintBoard());
+            System.out.println(myGame.toString());
         }
 
         scanner.close();
