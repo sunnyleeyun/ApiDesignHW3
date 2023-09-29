@@ -29,9 +29,10 @@ def draw_board(board):
 
 def getInput(game):
     if game.current_game_state() is GameState.TURN_PLAYER_1:
-        column = input()
+        column = input() 
     else:
         column = random.randint(0, 7)
+        print(column)
     return column
 
 def play(game):
@@ -49,15 +50,16 @@ def play(game):
         try:
             state = game.drop_checker(column)
             print(state)
-
+            
             if state == GameState.WIN_PLAYER_1 or state == GameState.WIN_PLAYER_2 or state == GameState.TIE:
                 break
+            
+            draw_board(game.board())
+            
         except (errors.ColumnOutOfRangeError, errors.ColumnFullError, errors.GameOverError, TypeError) as error:
             print(error)
-            continue
+            
 
-        draw_board(game.board())
-        continue
 
 def printInitialGame(game):
     print("Player 1 is Human")
