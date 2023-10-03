@@ -83,8 +83,7 @@ public class Connect4 {
     /**
      * Retrieves the current player's identifier.
      *
-     * @return An integer representing the current player, which can be either 1 or
-     *         2.
+     * @return An integer representing current player, which can be either 1 or 2.
      */
     public int getCurrentPlayer() {
         return currentPlayer;
