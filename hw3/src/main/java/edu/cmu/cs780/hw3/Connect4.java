@@ -158,7 +158,7 @@ public class Connect4 {
         } else if (hasWinner()) {
             System.out.println("Winner is " + getWinner() + "! Good Game! \n");
         } else {
-            System.out.println("Player " + currentPlayer + ". Pick a column.");
+            System.out.println("Player " + currentPlayer + "'s turn.");
         }
     }
 
