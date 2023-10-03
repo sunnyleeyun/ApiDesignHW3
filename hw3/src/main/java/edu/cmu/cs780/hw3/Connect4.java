@@ -5,29 +5,34 @@ import java.util.Random;
 /**
  * Represents the game logic and state for Connect4.
  * <p>
- * Connect4 is a two-player connection game in which the players first choose a color and 
- * then take turns dropping one colored disc from the top into a seven-column, six-row vertically 
- * suspended grid. The objective of the game is to connect four of one's own discs of the 
- * same color next to each other vertically, horizontally, or diagonally before the opponent.
+ * Connect4 is a two-player connection game in which the players first choose a
+ * color and
+ * then take turns dropping one colored disc from the top into a seven-column,
+ * six-row vertically
+ * suspended grid. The objective of the game is to connect four of one's own
+ * discs of the
+ * same color next to each other vertically, horizontally, or diagonally before
+ * the opponent.
  * </p>
  * This class provides methods to:
  * <ul>
- *     <li>Initialize a new game session.</li>
- *     <li>Handle player moves and input.</li>
- *     <li>Check for game-winning conditions.</li>
- *     <li>Determine the current state of the game board.</li>
- *     <li>Display the current player.</li>
- *     <li>Display the current state of the game board.</li>
+ * <li>Initialize a new game session.</li>
+ * <li>Handle player moves and input.</li>
+ * <li>Check for game-winning conditions.</li>
+ * <li>Determine the current state of the game board.</li>
+ * <li>Display the current player.</li>
+ * <li>Display the current state of the game board.</li>
  * </ul>
  * 
  * Example usage:
+ * 
  * <pre>
  * // Start a new game
  * Connect4 game = new Connect4();
  * 
  * // Get the current player
  * int currentPlayer = game.getCurrentPlayer();
- * System.out.println("It's " + currentPlayer + "'s turn.");
+ * System.out.println("It's player " + currentPlayer + "'s turn.");
  * 
  * // Make a move in the third column
  * game.placeChecker(2);
@@ -36,13 +41,15 @@ import java.util.Random;
  * game.toString();
  * 
  * // Displays the current game status
- * // If the game has not yet ended, it indicates which player's turn it is to play
- * displayGameStatus();
+ * // If the game has not yet ended, it indicates which player's turn it is to
+ * // play
+ * game.displayGameStatus();
  * 
  * // Check if the game is over
  * if (game.isGameOver()) {
- *     // If the game has concluded, the game status (either a win or a draw) is displayed
- *     displayGameStatus();
+ *     // If the game has concluded, the game status (either a win or a draw) is
+ *     // displayed
+ *     game.displayGameStatus();
  * }
  * 
  * </pre>
@@ -75,15 +82,14 @@ public class Connect4 {
      */
     private int currentPlayer;
 
-    //private Random random;
-
     /**
-     * Initializes the game with a randomly chosen starting player and an empty board.
+     * Initializes the game with a randomly chosen starting player and an empty
+     * board.
      * The board is represented as a 2D array of integers, where:
      * <ul>
-     *     <li>0 represents an empty cell.</li>
-     *     <li>1 represents a checker from player 1.</li>
-     *     <li>2 represents a checker from player 2.</li>
+     * <li>0 represents an empty cell.</li>
+     * <li>1 represents a checker from player 1.</li>
+     * <li>2 represents a checker from player 2.</li>
      * </ul>
      */
     public Connect4() {
@@ -97,14 +103,16 @@ public class Connect4 {
      * Initializes the game with a specified starting player and an empty board.
      * The board is represented as a 2D array of integers, where:
      * <ul>
-     *     <li>0 represents an empty cell.</li>
-     *     <li>1 represents a checker from player 1.</li>
-     *     <li>2 represents a checker from player 2.</li>
+     * <li>0 represents an empty cell.</li>
+     * <li>1 represents a checker from player 1.</li>
+     * <li>2 represents a checker from player 2.</li>
      * </ul>
      * 
-     * @param startPlayer The number of player id to start the game. Valid values are 1 or 2.
+     * @param startPlayer The number of player id to start the game. Valid values
+     *                    are 1 or 2.
      * 
-     * @throws IllegalArgumentException if the {@code startPlayer} is neither 1 nor 2.
+     * @throws IllegalArgumentException if the {@code startPlayer} is neither 1 nor
+     *                                  2.
      */
     public Connect4(int startPlayer) {
         if (startPlayer != 1 && startPlayer != 2) {
@@ -117,18 +125,27 @@ public class Connect4 {
     }
 
     /**
-     * Determines if the game has reached a conclusion, either due to a win condition or a draw.
+     * Determines if the game has reached a conclusion, either due to a win
+     * condition or a draw.
      * 
-     * <p>The game is considered to be over under the following conditions:</p>
+     * <p>
+     * The game is considered to be over under the following conditions:
+     * </p>
      * <ul>
-     *     <li>A player forms a horizontal, vertical, or diagonal line of 4 checkers.</li>
-     *     <li>The board is full, signifying a draw, even if there isn't a distinct winner.</li>
+     * <li>A player forms a horizontal, vertical, or diagonal line of 4
+     * checkers.</li>
+     * <li>The board is full, signifying a draw, even if there isn't a distinct
+     * winner.</li>
      * </ul>
      *
-     * <p>The method returns {@code true} if any of the above conditions are met, indicating the game's conclusion.
-     * Otherwise, it returns {@code false}, implying the game can still proceed.</p>
+     * <p>
+     * The method returns {@code true} if any of the above conditions are met,
+     * indicating the game's conclusion.
+     * Otherwise, it returns {@code false}, implying the game can still proceed.
+     * </p>
      *
-     * @return {@code true} if the game has reached a conclusion, either due to a win condition or a draw;
+     * @return {@code true} if the game has reached a conclusion, either due to a
+     *         win condition or a draw;
      *         {@code false} if the game can continue.
      */
     public boolean isGameOver() {
@@ -211,19 +228,22 @@ public class Connect4 {
      * 
      * If the chosen column is valid (not full), the current player's checker is
      * added to the game board, the role is switched to the other player, and true
-     * is returned. If the chosen column is invalid or full, appropriate exceptions are thrown.
+     * is returned. If the chosen column is invalid or full, appropriate exceptions
+     * are thrown.
      * 
      * @param columnNum the index-based column number (0 to 6 inclusive) where
      *                  the current player wants to place their checker.
-     * @return true if the checker was successfully placed, otherwise exceptions are thrown.
-     * @throws IndexOutOfBoundsException if the columnNum is outside the valid range.
-     * @throws IllegalArgumentException if the chosen column is already full.
+     * @return true if the checker was successfully placed, otherwise exceptions are
+     *         thrown.
+     * @throws IndexOutOfBoundsException if the columnNum is outside the valid
+     *                                   range.
+     * @throws IllegalArgumentException  if the chosen column is already full.
      */
     public boolean placeChecker(int columnNum) {
         if (columnNum < 0 || columnNum > 6) {
             throw new IndexOutOfBoundsException("Invalid column number. Valid columns are from 0 to 6 inclusive.");
         }
-        
+
         if (isColumnAvailable(columnNum)) {
             addToBoard(columnNum, currentPlayer);
             switchRole();

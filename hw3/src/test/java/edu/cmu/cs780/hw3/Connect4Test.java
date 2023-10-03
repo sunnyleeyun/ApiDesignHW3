@@ -374,4 +374,14 @@ public class Connect4Test {
         assertEquals(expected, actual);
     }
 
+    @Test(expected = Exception.class)
+    public void testInvalidStartUserConstructor() throws Exception {
+        // given
+        // when
+        int startPlayer = 3;
+        Connect4 _ = new Connect4(startPlayer);
+
+        // then
+        // exception
+    }
 }
