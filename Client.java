@@ -35,12 +35,14 @@ public class Client {
                 game.displayGameStatus();
             }
 
-            // // continue game
-            // System.out.print("Press 'y' to start a new game, or press any other key to exit: ");
-            // if (getUserInput.nextLine() != "y") {
-            //     break;
-            // }
-            break;
+            // continue game
+            System.out.print("Enter 'y' to start a new game, or enter any other key to exit: ");
+            if (getUserInput.hasNext()) {
+                String gameContinueDecision = getUserInput.next();
+                if (!gameContinueDecision.equals("y")) {
+                    break;
+                }
+            }
         }
         getUserInput.close();
     }
