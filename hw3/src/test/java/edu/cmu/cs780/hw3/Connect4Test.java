@@ -294,4 +294,19 @@ public class Connect4Test {
         assertEquals(expected, game.toString());
     }
 
+    @Test
+    public void testCurrentPlayer() {
+        // given
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(1); // 2
+
+        // when
+        int actual = game.getCurrentPlayer();
+
+        // then
+        int expected = 1;
+        assertEquals(expected, actual);
+    }
+
 }
