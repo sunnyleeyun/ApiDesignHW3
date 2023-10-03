@@ -75,7 +75,7 @@ public class Connect4 {
      */
     private int currentPlayer;
 
-    private Random random;
+    //private Random random;
 
     /**
      * Initializes the game with a randomly chosen starting player and an empty board.
@@ -87,7 +87,6 @@ public class Connect4 {
      * </ul>
      */
     public Connect4() {
-        this.random = new Random();
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
         this.checkerCount = 0;
@@ -164,7 +163,8 @@ public class Connect4 {
      * @return an integer of the player id (1 or 2) to start first.
      */
     private int selectStartPlayer() {
-        int value = 1 + random.nextInt(2);
+        Random rand = new Random();
+        int value = 1 + rand.nextInt(2);
         return value;
     }
 
