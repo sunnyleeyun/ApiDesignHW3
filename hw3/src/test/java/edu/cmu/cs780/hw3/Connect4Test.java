@@ -174,108 +174,162 @@ public class Connect4Test {
     public void testHasWinner1() {
         // given
         // when
-        Connect4 game = new Connect4();
-        int gameboard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 2, 2, 2, 0, 0, 0, 0 },
-                { 1, 1, 1, 1, 0, 0, 0 }
-        };
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(0); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(2); // 1
+        game.placeChecker(3); // 2
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 1, 1, 1, 0, 0, 0, 0 },
+        // { 2, 2, 2, 2, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner(gameboard));
+        assertTrue(game.hasWinner());
     }
 
     @Test
     public void testHasWinner2() {
         // given
         // when
-        Connect4 game = new Connect4();
-        int gameboard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 1, 0, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 }
-        };
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 2, 0, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner(gameboard));
+        assertTrue(game.hasWinner());
     }
 
     @Test
     public void testHasWinner3() {
         // given
         // when
-        Connect4 game = new Connect4();
-        int gameboard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 2, 2, 2, 0, 0, 0, 0 },
-                { 0, 0, 0, 1, 1, 1, 1 }
-        };
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(0); // 2
+        game.placeChecker(3); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(4); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(5); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(6); // 1
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 2, 0, 0, 0, 0, 0, 0 },
+        // { 2, 2, 2, 1, 1, 1, 1 }
 
         // then
-        assertTrue(game.hasWinner(gameboard));
+        String expected = "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "0000000\n" +
+                "2000000\n" +
+                "2221111\n";
+        assertEquals(expected, game.toString());
+        assertTrue(game.hasWinner());
     }
 
     @Test
     public void testHasWinner4() {
         // given
         // when
-        Connect4 game = new Connect4();
-        int gameboard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 1 },
-                { 0, 2, 0, 0, 0, 0, 1 },
-                { 0, 2, 0, 0, 0, 0, 1 },
-                { 0, 2, 0, 0, 0, 0, 1 }
-        };
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(6); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(6); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(6); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(6); // 2
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 2 },
+        // { 0, 1, 0, 0, 0, 0, 2 },
+        // { 0, 1, 0, 0, 0, 0, 2 },
+        // { 0, 1, 0, 0, 0, 0, 2 }
 
         // then
-        assertTrue(game.hasWinner(gameboard));
+        assertTrue(game.hasWinner());
     }
 
     @Test
     public void testHasWinner5() {
         // given
         // when
-        Connect4 game = new Connect4();
-        int gameboard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 1, 0, 0, 0 },
-                { 0, 0, 1, 1, 0, 0, 0 },
-                { 2, 1, 1, 2, 0, 0, 0 },
-                { 1, 2, 2, 2, 0, 0, 0 }
-        };
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(2); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(2); // 1
+        game.placeChecker(3); // 2
+        game.placeChecker(3); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(3); // 1
+        game.placeChecker(3); // 2
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 2, 0, 0, 0 },
+        // { 0, 0, 2, 1, 0, 0, 0 },
+        // { 1, 2, 1, 1, 0, 0, 0 },
+        // { 2, 1, 2, 2, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner(gameboard));
+        assertTrue(game.hasWinner());
     }
 
     @Test
     public void testHasWinner6() {
         // given
         // when
-        Connect4 game = new Connect4();
-        int gameboard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 1, 0, 0, 0, 0, 0, 0 },
-                { 2, 1, 0, 0, 0, 0, 0 },
-                { 2, 1, 1, 2, 0, 0, 0 },
-                { 1, 2, 2, 1, 0, 0, 0 }
-        };
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(3); // 2
+        game.placeChecker(3); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(0); // 2
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 2, 0, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 2, 1, 2, 1, 0, 0, 0 },
+        // { 1, 1, 2, 2, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner(gameboard));
+        assertTrue(game.hasWinner());
     }
 
     @Test
