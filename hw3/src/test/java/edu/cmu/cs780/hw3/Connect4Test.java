@@ -224,21 +224,22 @@ public class Connect4Test {
         // when
         Random random = new Random(SEED);
         Connect4 game = new Connect4(random);
-        game.placeChecker(0); // 2
+        game.placeChecker(3); // 2
         game.placeChecker(3); // 1
-        game.placeChecker(1); // 2
+        game.placeChecker(4); // 2
         game.placeChecker(4); // 1
-        game.placeChecker(2); // 2
+        game.placeChecker(5); // 2
         game.placeChecker(5); // 1
+        game.placeChecker(6); // 2
         // { 0, 0, 0, 0, 0, 0, 0 },
         // { 0, 0, 0, 0, 0, 0, 0 },
         // { 0, 0, 0, 0, 0, 0, 0 },
         // { 0, 0, 0, 0, 0, 0, 0 },
-        // { 0, 0, 0, 0, 0, 0, 0 },
-        // { 2, 2, 2, 1, 1, 1, 0 }
+        // { 0, 0, 0, 1, 1, 1, 0 },
+        // { 0, 0, 0, 2, 2, 2, 2 }
 
         // then
-        assertFalse(game.hasWinner());
+        assertTrue(game.hasWinner());
     }
 
     @Test
@@ -321,6 +322,29 @@ public class Connect4Test {
 
         // then
         assertTrue(game.hasWinner());
+    }
+
+    @Test
+    public void testHasWinner7() {
+        // given
+        // when
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(0); // 2
+        game.placeChecker(3); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(4); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(5); // 1
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 2, 2, 2, 1, 1, 1, 0 }
+
+        // then
+        assertFalse(game.hasWinner());
     }
 
     @Test
