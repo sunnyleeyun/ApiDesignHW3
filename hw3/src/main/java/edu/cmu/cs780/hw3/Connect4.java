@@ -81,6 +81,16 @@ public class Connect4 {
     }
 
     /**
+     * Retrieves the current player's identifier.
+     *
+     * @return An integer representing the current player, which can be either 1 or
+     *         2.
+     */
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
+
+    /**
      * Randomly selects which player starts first.
      * 
      * @return an integer of the player id (1 or 2) to start first.
