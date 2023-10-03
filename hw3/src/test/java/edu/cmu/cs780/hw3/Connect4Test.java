@@ -16,8 +16,6 @@ import org.junit.Test;
  * Unit test for simple App.
  */
 public class Connect4Test {
-    private static final int SEED = 4;
-
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
@@ -34,8 +32,8 @@ public class Connect4Test {
     @Test
     public void testPlaceCheckerFirstMove() {
         // given
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
 
         // when
         int col = 0;
@@ -54,8 +52,8 @@ public class Connect4Test {
     @Test
     public void testPlaceCheckerSecondMove() {
         // given
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
 
         // when
         int col = 0;
@@ -75,8 +73,9 @@ public class Connect4Test {
     @Test
     public void testPlaceCheckerWinMove() {
         // given
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
+
         game.placeChecker(1); // 2
         game.placeChecker(0); // 1
         game.placeChecker(1); // 2
@@ -103,14 +102,13 @@ public class Connect4Test {
                 "1200000\n";
         assertEquals(expected, game.toString());
         assertFalse(!game.isGameOver());
-        assertTrue(game.hasWinner());
     }
 
-    @Test
-    public void testCanPlaceChecker1() {
+    @Test(expected = Exception.class)
+    public void testCanPlaceChecker1() throws Exception {
         // given
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(1); // 2
         game.placeChecker(0); // 1
         game.placeChecker(1); // 2
@@ -134,15 +132,14 @@ public class Connect4Test {
         game.placeChecker(col); // player 1 place at col 0
 
         // then
-        String expected = "This column is invalid. Please pick another one.";
-        assertEquals(expected, outputStreamCaptor.toString().trim());
+        // exceptions
     }
 
-    @Test
-    public void testCanPlaceChecker2() {
+    @Test(expected = Exception.class)
+    public void testCanPlaceChecker2() throws Exception {
         // given
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(1); // 2
         game.placeChecker(0); // 1
         game.placeChecker(1); // 2
@@ -166,16 +163,15 @@ public class Connect4Test {
         game.placeChecker(col); // player 1 place at col 7
 
         // then
-        String expected = "This column is invalid. Please pick another one.";
-        assertEquals(expected, outputStreamCaptor.toString().trim());
+        // exceptions
     }
 
     @Test
     public void testHasWinner1() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(0); // 2
         game.placeChecker(0); // 1
         game.placeChecker(1); // 2
@@ -191,15 +187,15 @@ public class Connect4Test {
         // { 2, 2, 2, 2, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner());
+        assertTrue(game.isGameOver());
     }
 
     @Test
     public void testHasWinner2() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(0); // 2
         game.placeChecker(1); // 1
         game.placeChecker(0); // 2
@@ -215,15 +211,15 @@ public class Connect4Test {
         // { 2, 1, 0, 0, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner());
+        assertTrue(game.isGameOver());
     }
 
     @Test
     public void testHasWinner3() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(3); // 2
         game.placeChecker(3); // 1
         game.placeChecker(4); // 2
@@ -239,15 +235,15 @@ public class Connect4Test {
         // { 0, 0, 0, 2, 2, 2, 2 }
 
         // then
-        assertTrue(game.hasWinner());
+        assertTrue(game.isGameOver());
     }
 
     @Test
     public void testHasWinner4() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(6); // 2
         game.placeChecker(1); // 1
         game.placeChecker(6); // 2
@@ -263,15 +259,15 @@ public class Connect4Test {
         // { 0, 1, 0, 0, 0, 0, 2 }
 
         // then
-        assertTrue(game.hasWinner());
+        assertTrue(game.isGameOver());
     }
 
     @Test
     public void testHasWinner5() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(0); // 2
         game.placeChecker(1); // 1
         game.placeChecker(1); // 2
@@ -293,15 +289,15 @@ public class Connect4Test {
         // { 2, 1, 2, 2, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner());
+        assertTrue(game.isGameOver());
     }
 
     @Test
     public void testHasWinner6() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(3); // 2
         game.placeChecker(3); // 1
         game.placeChecker(2); // 2
@@ -321,15 +317,15 @@ public class Connect4Test {
         // { 1, 1, 2, 2, 0, 0, 0 }
 
         // then
-        assertTrue(game.hasWinner());
+        assertTrue(game.isGameOver());
     }
 
     @Test
     public void testHasWinner7() {
         // given
         // when
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(0); // 2
         game.placeChecker(3); // 1
         game.placeChecker(1); // 2
@@ -344,7 +340,7 @@ public class Connect4Test {
         // { 2, 2, 2, 1, 1, 1, 0 }
 
         // then
-        assertFalse(game.hasWinner());
+        assertFalse(game.isGameOver());
     }
 
     @Test
@@ -366,8 +362,8 @@ public class Connect4Test {
     @Test
     public void testCurrentPlayer() {
         // given
-        Random random = new Random(SEED);
-        Connect4 game = new Connect4(random);
+        int startPlayer = 2;
+        Connect4 game = new Connect4(startPlayer);
         game.placeChecker(1); // 2
 
         // when
