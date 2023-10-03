@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Random;
 
 import org.junit.After;
 import org.junit.Before;
@@ -15,8 +16,7 @@ import org.junit.Test;
  * Unit test for simple App.
  */
 public class Connect4Test {
-    private static final int ROW_SIZE = 6;
-    private static final int COL_SIZE = 7;
+    private static final int SEED = 4;
 
     private final PrintStream standardOut = System.out;
     private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
@@ -34,10 +34,8 @@ public class Connect4Test {
     @Test
     public void testPlaceCheckerFirstMove() {
         // given
-        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-        int checkersCount = 0;
-        int currentPlayer = 1;
-        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
 
         // when
         int col = 0;
@@ -49,17 +47,15 @@ public class Connect4Test {
                 "0000000\n" +
                 "0000000\n" +
                 "0000000\n" +
-                "1000000\n";
+                "2000000\n";
         assertEquals(expected, game.toString());
     }
 
     @Test
     public void testPlaceCheckerSecondMove() {
         // given
-        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-        int checkersCount = 1;
-        int currentPlayer = 1;
-        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
 
         // when
         int col = 0;
@@ -71,34 +67,37 @@ public class Connect4Test {
                 "0000000\n" +
                 "0000000\n" +
                 "0000000\n" +
-                "2000000\n" +
-                "1000000\n";
+                "1000000\n" +
+                "2000000\n";
         assertEquals(expected, game.toString());
     }
 
     @Test
     public void testPlaceCheckerWinMove() {
         // given
-        int newBoard[][] = {
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 }
-        };
-        int checkersCount = 6;
-        int currentPlayer = 1;
-        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 }
 
         // when
-        int col = 0;
-        game.placeChecker(col);
+        int col = 1;
+        game.placeChecker(col); // player 2 place at col 1
 
         // then
         String expected = "0000000\n" +
                 "0000000\n" +
-                "1000000\n" +
+                "0200000\n" +
                 "1200000\n" +
                 "1200000\n" +
                 "1200000\n";
@@ -110,21 +109,29 @@ public class Connect4Test {
     @Test
     public void testCanPlaceChecker1() {
         // given
-        int newBoard[][] = {
-                { 2, 0, 0, 0, 0, 0, 0 },
-                { 2, 1, 0, 0, 0, 0, 0 },
-                { 2, 1, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 }
-        };
-        int checkersCount = 11;
-        int currentPlayer = 1;
-        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        // { 2, 0, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 }
 
         // when
         int col = 0;
-        game.placeChecker(col);
+        game.placeChecker(col); // player 1 place at col 0
 
         // then
         String expected = "This column is invalid. Please pick another one.";
@@ -134,21 +141,29 @@ public class Connect4Test {
     @Test
     public void testCanPlaceChecker2() {
         // given
-        int newBoard[][] = {
-                { 2, 0, 0, 0, 0, 0, 0 },
-                { 2, 1, 0, 0, 0, 0, 0 },
-                { 2, 1, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 },
-                { 1, 2, 0, 0, 0, 0, 0 }
-        };
-        int checkersCount = 11;
-        int currentPlayer = 1;
-        Connect4 game = new Connect4(newBoard, checkersCount, currentPlayer);
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(0); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        game.placeChecker(1); // 1
+        game.placeChecker(0); // 2
+        // { 2, 0, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 },
+        // { 2, 1, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 },
+        // { 1, 2, 0, 0, 0, 0, 0 }
 
         // when
         int col = 7;
-        game.placeChecker(col);
+        game.placeChecker(col); // player 1 place at col 7
 
         // then
         String expected = "This column is invalid. Please pick another one.";

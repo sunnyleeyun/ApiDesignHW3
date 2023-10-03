@@ -33,10 +33,14 @@ public class Connect4 {
      */
     private int currentPlayer;
 
+    private Random random;
+
     /**
-     * Initializes the game with an empty board, and randomly decides the starting player.
+     * Initializes the game with an empty board, and randomly decides the starting
+     * player.
      */
     public Connect4() {
+        this.random = new Random();
         int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
         this.checkerCount = 0;
@@ -44,24 +48,23 @@ public class Connect4 {
     }
 
     /**
-     * Creates a Connect4 game object using a provided game board,
-     * the current number of checkers on the board, and the id of the starting player.
-     * 
-     * @param newBoard      input game board represented as a 2D array.
-     * @param checkerCount  current number of checkers on the board.
-     * @param currentPlayer the ID of the player set to play next.
+     * Initializes the game with an empty board, and randomly decides the starting
+     * player.
      */
-    public Connect4(int[][] newBoard, int checkerCount, int currentPlayer) {
+    public Connect4(Random random) {
+        this.random = random;
+        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
         this.gameBoard = newBoard;
-        this.checkerCount = checkerCount;
-        this.currentPlayer = currentPlayer;
+        this.checkerCount = 0;
+        this.currentPlayer = selectStartPlayer();
     }
 
     /**
      * Determines if the game has reached an end condition or it can be continued.
      * This method also prints out the game status to the console.
      *
-     * @return {@code true} if the game has reached a draw or a win condition, {@code false} if 
+     * @return {@code true} if the game has reached a draw or a win condition,
+     *         {@code false} if
      *         the game is not over.
      */
     public boolean isGameOver() {
@@ -83,8 +86,7 @@ public class Connect4 {
      * @return an integer of the player id (1 or 2) to start first.
      */
     private int selectStartPlayer() {
-        Random rand = new Random();
-        int value = 1 + rand.nextInt(2);
+        int value = 1 + random.nextInt(2);
         return value;
     }
 
@@ -109,7 +111,8 @@ public class Connect4 {
      * Determines if a checker can be placed in the specified column.
      * 
      * @param columnNum the column number to check (0 to 6 inclusive).
-     * @return {@code true} if the column is not full and can accept a checker, else {@code false}.
+     * @return {@code true} if the column is not full and can accept a checker, else
+     *         {@code false}.
      */
     private boolean isColumnAvailable(int columnNum) {
         return (columnNum >= 0 && columnNum <= 6) && this.gameBoard[0][columnNum] == 0;
@@ -142,7 +145,7 @@ public class Connect4 {
      * added to the game board and the role is switched to the other player. If
      * the chosen column is already full, an appropriate message is displayed.
      * 
-     * @param columnNum the index-based column number (0 to 6 inclusive) where 
+     * @param columnNum the index-based column number (0 to 6 inclusive) where
      *                  the current player wants to place their checker.
      */
     public void placeChecker(int columnNum) {
@@ -204,7 +207,8 @@ public class Connect4 {
      * Determines if there are four vertically connected checkers on the board.
      *
      * @param gameBoard 2D array representing the current state of the game board.
-     * @return {@code true} if there are four vertically connected checkers, {@code false}
+     * @return {@code true} if there are four vertically connected checkers,
+     *         {@code false}
      *         otherwise.
      */
     private boolean verticalHasWinner(int[][] gameBoard) {
@@ -233,7 +237,8 @@ public class Connect4 {
      * Determines if there are four horizontally connected checkers on the board.
      *
      * @param gameBoard 2D array representing the current state of the game board.
-     * @return {@code true} if there are four horizontally connected checkers, {@code false}
+     * @return {@code true} if there are four horizontally connected checkers,
+     *         {@code false}
      *         otherwise.
      */
     private boolean horizontalHasWinner(int[][] gameBoard) {
