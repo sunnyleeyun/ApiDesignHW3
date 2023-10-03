@@ -333,6 +333,29 @@ public class Connect4Test {
     }
 
     @Test
+    public void testHasWinner7() {
+        // given
+        // when
+        Random random = new Random(SEED);
+        Connect4 game = new Connect4(random);
+        game.placeChecker(0); // 2
+        game.placeChecker(3); // 1
+        game.placeChecker(1); // 2
+        game.placeChecker(4); // 1
+        game.placeChecker(2); // 2
+        game.placeChecker(5); // 1
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 0, 0, 0, 0, 0, 0, 0 },
+        // { 2, 2, 2, 1, 1, 1, 0 }
+
+        // then
+        assertFalse(game.hasWinner());
+    }
+
+    @Test
     public void testEmptyPrettyPrintBoard() {
         // given
         // when

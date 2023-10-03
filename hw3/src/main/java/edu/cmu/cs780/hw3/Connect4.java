@@ -109,7 +109,7 @@ public class Connect4 {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < ROW_SIZE; ++i) {
             for (int j = 0; j < COL_SIZE; ++j) {
-                res.append(gameBoard[i][j]);
+                res.append(this.gameBoard[i][j]);
             }
             res.append('\n');
         }
@@ -133,18 +133,8 @@ public class Connect4 {
      * @return {@code true} if the current player wins, {@code false} otherwise.
      */
     public boolean hasWinner() {
-        return hasWinner(this.gameBoard);
-    }
-
-    /**
-     * Determines if there is a winner on a given game board.
-     * 
-     * @param gameBoard input Game board represented as a 2D array.
-     * @return {@code true} if there is a winner, {@code false} otherwise.
-     */
-    public boolean hasWinner(int[][] gameBoard) {
-        return verticalHasWinner(gameBoard) || horizontalHasWinner(gameBoard) || diagonalSWNEHasWinner(gameBoard)
-                || diagonalNWSEHasWinner(gameBoard);
+        return verticalHasWinner() || horizontalHasWinner() || diagonalSWNEHasWinner()
+                || diagonalNWSEHasWinner();
     }
 
     /**
@@ -215,21 +205,20 @@ public class Connect4 {
     /**
      * Determines if there are four vertically connected checkers on the board.
      *
-     * @param gameBoard 2D array representing the current state of the game board.
      * @return {@code true} if there are four vertically connected checkers,
      *         {@code false}
      *         otherwise.
      */
-    private boolean verticalHasWinner(int[][] gameBoard) {
+    private boolean verticalHasWinner() {
         for (int col = 0; col < COL_SIZE; ++col) {
             for (int row = 0; row < ROW_SIZE - WIN_SIZE + 1; ++row) {
-                int curr = gameBoard[row][col];
+                int curr = this.gameBoard[row][col];
                 if (curr == 0) {
                     continue;
                 }
                 int k;
                 for (k = 1; k < WIN_SIZE; ++k) {
-                    if (curr != gameBoard[row + k][col]) {
+                    if (curr != this.gameBoard[row + k][col]) {
                         break;
                     }
                 }
@@ -245,21 +234,20 @@ public class Connect4 {
     /**
      * Determines if there are four horizontally connected checkers on the board.
      *
-     * @param gameBoard 2D array representing the current state of the game board.
      * @return {@code true} if there are four horizontally connected checkers,
      *         {@code false}
      *         otherwise.
      */
-    private boolean horizontalHasWinner(int[][] gameBoard) {
+    private boolean horizontalHasWinner() {
         for (int row = 0; row < ROW_SIZE; ++row) {
             for (int col = 0; col < COL_SIZE - WIN_SIZE + 1; ++col) {
-                int curr = gameBoard[row][col];
+                int curr = this.gameBoard[row][col];
                 if (curr == 0) {
                     continue;
                 }
                 int k;
                 for (k = 1; k < WIN_SIZE; ++k) {
-                    if (curr != gameBoard[row][col + k]) {
+                    if (curr != this.gameBoard[row][col + k]) {
                         break;
                     }
                 }
@@ -276,20 +264,19 @@ public class Connect4 {
      * Determines if there are four diagonally connected checkers
      * in the south-west to north-east direction.
      *
-     * @param gameBoard 2D array representing the current state of the game board.
      * @return {@code true} if there are four diagonally connected checkers in the
      *         south-west to north-east direction, {@code false} otherwise.
      */
-    private boolean diagonalSWNEHasWinner(int[][] gameBoard) {
+    private boolean diagonalSWNEHasWinner() {
         for (int row = ROW_SIZE - WIN_SIZE + 1; row < ROW_SIZE; ++row) {
             for (int col = 0; col < COL_SIZE - WIN_SIZE + 1; ++col) {
-                int curr = gameBoard[row][col];
+                int curr = this.gameBoard[row][col];
                 if (curr == 0) {
                     continue;
                 }
                 int k;
                 for (k = 1; k < WIN_SIZE; ++k) {
-                    if (curr != gameBoard[row - k][col + k]) {
+                    if (curr != this.gameBoard[row - k][col + k]) {
                         break;
                     }
                 }
@@ -305,20 +292,19 @@ public class Connect4 {
      * Determines if there are four diagonally connected checkers
      * in the north-west to south-east direction.
      *
-     * @param gameBoard 2D array representing the current state of the game board.
      * @return {@code true} if there are four diagonally connected checkers in the
      *         north-west to south-east direction, {@code false} otherwise.
      */
-    private boolean diagonalNWSEHasWinner(int[][] gameBoard) {
+    private boolean diagonalNWSEHasWinner() {
         for (int row = 0; row < ROW_SIZE - WIN_SIZE + 1; ++row) {
             for (int col = 0; col < COL_SIZE - WIN_SIZE + 1; ++col) {
-                int curr = gameBoard[row][col];
+                int curr = this.gameBoard[row][col];
                 if (curr == 0) {
                     continue;
                 }
                 int k;
                 for (k = 1; k < WIN_SIZE; ++k) {
-                    if (curr != gameBoard[row + k][col + k]) {
+                    if (curr != this.gameBoard[row + k][col + k]) {
                         break;
                     }
                 }
