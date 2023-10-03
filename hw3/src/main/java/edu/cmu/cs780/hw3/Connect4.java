@@ -117,18 +117,18 @@ public class Connect4 {
         this.currentPlayer = startPlayer;
     }
 
-    /**
-     * Initializes the game with an empty board, and randomly decides the starting
-     * player.
-     * @param random Something
-     */
-    public Connect4(Random random) {
-        this.random = random;
-        int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
-        this.gameBoard = newBoard;
-        this.checkerCount = 0;
-        this.currentPlayer = selectStartPlayer();
-    }
+    // /**
+    //  * Initializes the game with an empty board, and randomly decides the starting
+    //  * player.
+    //  * @param random Something
+    //  */
+    // public Connect4(Random random) {
+    //     this.random = random;
+    //     int[][] newBoard = new int[ROW_SIZE][COL_SIZE];
+    //     this.gameBoard = newBoard;
+    //     this.checkerCount = 0;
+    //     this.currentPlayer = selectStartPlayer();
+    // }
 
     /**
      * Determines if the game has reached a conclusion, either due to a win condition or a draw.
@@ -214,7 +214,7 @@ public class Connect4 {
      * 
      * @return {@code true} if the current player wins, {@code false} otherwise.
      */
-    public boolean hasWinner() {
+    private boolean hasWinner() {
         return verticalHasWinner() || horizontalHasWinner() || diagonalSWNEHasWinner()
                 || diagonalNWSEHasWinner();
     }
